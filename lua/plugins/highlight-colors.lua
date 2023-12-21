@@ -1,0 +1,13 @@
+return {
+  'brenoprata10/nvim-highlight-colors',
+  keys = {
+    { '<leader>hc', '<cmd>HighlightColorsOn<cr>', desc = 'Toggle highlight colors' },
+  },
+  config = function()
+    require('nvim-highlight-colors').setup{
+      render = 'background',
+      enable_named_colors = false,
+      enable_tailwind = true,
+    }
+  end
+}
