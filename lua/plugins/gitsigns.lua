@@ -5,9 +5,9 @@ return {
 		signs = {
 			add = { text = "󱇬" },
 			change = { text = "" },
-			delete = { text = "󰛌" },
+			delete = { text = "󰆴" },
 			topdelete = { text = "󰧧" },
-			changedelete = { text = "󰧧" },
+			changedelete = { text = "" },
 		},
 	},
 }

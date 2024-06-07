@@ -65,10 +65,13 @@ return { -- Autoformat
 				lua = { "stylua" },
 				c = { "clang-format" },
 				javascript = { { "biome", "prettierd", "prettier", "deno_fmt" } },
+				typescript = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				javascriptreact = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				typescriptreact = { { "biome", "prettierd", "prettier", "deno_fmt" } },
-				typescript = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				json = { { "biome", "prettierd", "prettier", "deno_fmt" } },
+				vue = { { "prettierd", "prettier" } },
+				html = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
 			},
 		})
 

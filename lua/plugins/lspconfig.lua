@@ -118,6 +118,10 @@ return { -- LSP Configuration & Plugins
 			single_file_support = false,
 		})
 
+		local mason_registry = require("mason-registry")
+		local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+			.. "/node_modules/@vue/language-server"
+
 		local servers = {
 			-- See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
@@ -125,32 +129,24 @@ return { -- LSP Configuration & Plugins
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			volar = {
-				filetypes = { "vue" },
-			},
-
-			tailwindcss = {
-				root_dir = lspconfig.util.root_pattern({
-					"tailwind.config.js",
-					"tailwind.config.cjs",
-					"tailwind.config.mjs",
-					"tailwind.config.ts",
-					"postcss.config.js",
-					"postcss.config.cjs",
-					"postcss.config.mjs",
-					"postcss.config.ts",
-				}),
-			},
-
 			tsserver = {
 				root_dir = lspconfig.util.root_pattern({ "package.json", "tsconfig.json" }),
 				single_file_support = false,
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vue_language_server_path,
+							languages = { "vue" },
+						},
+					},
+				},
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			},
-
+			volar = {},
 			biome = {
 				root_dir = lspconfig.util.root_pattern("biome.json"),
 			},
-
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
@@ -165,6 +161,33 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
+			emmet_language_server = {
+				filetypes = {
+					"css",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"pug",
+					"typescriptreact",
+					"vue",
+					"astro",
+				},
+			},
+			tailwindcss = {
+				root_dir = lspconfig.util.root_pattern({
+					"tailwind.config.js",
+					"tailwind.config.cjs",
+					"tailwind.config.mjs",
+					"tailwind.config.ts",
+					"postcss.config.js",
+					"postcss.config.cjs",
+					"postcss.config.mjs",
+					"postcss.config.ts",
+				}),
+			},
 		}
 
 		require("mason").setup()
@@ -175,6 +198,7 @@ return { -- LSP Configuration & Plugins
 			"prettierd",
 			"prettier",
 			"biome",
+			"lua_ls",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
