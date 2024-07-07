@@ -1,14 +1,13 @@
 return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
-	name = "LSPConfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", name = "Mason", config = true },
-		{ "williamboman/mason-lspconfig.nvim", name = "Mason LSP" },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim", name = "Mason Tool Installer" },
+		{ "williamboman/mason.nvim", config = true },
+		{ "williamboman/mason-lspconfig.nvim" },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 
-		{ "j-hui/fidget.nvim", name = "Fidget", opts = {} },
+		{ "j-hui/fidget.nvim", opts = {} },
 
-		{ "folke/neodev.nvim", name = "Neodev", opts = {} },
+		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		require("lspconfig.ui.windows").default_options.border = "rounded"
@@ -198,7 +197,7 @@ return { -- LSP Configuration & Plugins
 			"prettierd",
 			"prettier",
 			"biome",
-			"lua_ls",
+			"js-debug-adapter",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

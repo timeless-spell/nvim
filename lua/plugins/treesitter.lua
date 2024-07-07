@@ -1,9 +1,8 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
-	name = "Treesitter",
 	build = ":TSUpdate",
 	dependencies = {
-		{ "nvim-treesitter/nvim-treesitter-context", name = "Treesitter Context" },
+		{ "nvim-treesitter/nvim-treesitter-context" },
 	},
 	opts = {
 		ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },

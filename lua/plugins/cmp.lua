@@ -1,12 +1,10 @@
 return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
-	name = "Cmp",
 	event = "InsertEnter",
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		{
 			"L3MON4D3/LuaSnip",
-			name = "LuaSnip",
 			build = (function()
 				-- Build Step is needed for regex support in snippets.
 				-- This step is not supported in many windows environments.
@@ -22,16 +20,15 @@ return { -- Autocompletion
 				--    https://github.com/rafamadriz/friendly-snippets
 				{
 					"rafamadriz/friendly-snippets",
-					name = "Friendly Snippets",
 					config = function()
 						require("luasnip.loaders.from_vscode").lazy_load()
 					end,
 				},
 			},
 		},
-		{ "onsails/lspkind.nvim", name = "LSPKind" },
+		{ "onsails/lspkind.nvim" },
 
-		{ "saadparwaiz1/cmp_luasnip", name = "Cmp LuaSnip" },
+		{ "saadparwaiz1/cmp_luasnip" },
 
 		-- Adds other completion capabilities.
 		--  nvim-cmp does not ship with all sources by default. They are split
@@ -41,7 +38,6 @@ return { -- Autocompletion
 		{ "chrisgrieser/cmp-nerdfont", name = "Cmp Nerdfont" },
 		{ "hrsh7th/cmp-emoji", name = "Cmp Emoji" },
 		{ "hrsh7th/cmp-buffer", name = "Cmp Buffer" },
-		{ "amarakon/nvim-cmp-buffer-lines", name = "Cmp Buffer Lines" },
 		{ "hrsh7th/cmp-cmdline", name = "Cmp Cmdline" },
 		{ "mtoohey31/cmp-fish", name = "Cmp Fish" },
 		{ "hrsh7th/cmp-nvim-lua", name = "Cmp Nvim Lua" },
@@ -128,7 +124,7 @@ return { -- Autocompletion
 					mode = "symbol",
 					maxwidth = 50,
 					ellipsis_char = "...",
-					symbol_map = { Codeium = "" },
+					symbol_map = { Codeium = "󱜙" },
 				}),
 			},
 			sources = {
@@ -136,7 +132,6 @@ return { -- Autocompletion
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{ name = "buffer-lines" },
 				{ name = "nerdfont" },
 				{ name = "emoji" },
 				{ name = "fish" },
@@ -149,7 +144,6 @@ return { -- Autocompletion
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = {
 				{ name = "buffer" },
-				{ name = "buffer-lines" },
 			},
 		})
 

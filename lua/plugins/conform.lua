@@ -1,6 +1,5 @@
 return { -- Autoformat
 	"stevearc/conform.nvim",
-	name = "Conform",
 	event = "BufWritePre",
 	cmd = "ConformInfo",
 	keys = {
@@ -15,6 +14,7 @@ return { -- Autoformat
 	},
 	config = function()
 		local conform = require("conform")
+
 		conform.formatters.biome = function()
 			return {
 				cwd = require("conform.util").root_file({ "biome.json" }),
@@ -34,6 +34,7 @@ return { -- Autoformat
 				cwd = require("conform.util").root_file({
 					".prettierrc",
 					".prettierrc.json",
+					".prettierrc.mjs",
 				}),
 				require_cwd = true,
 			}
@@ -44,6 +45,7 @@ return { -- Autoformat
 				cwd = require("conform.util").root_file({
 					".prettierrc",
 					".prettierrc.json",
+					".prettierrc.mjs",
 				}),
 				require_cwd = true,
 			}
@@ -57,18 +59,18 @@ return { -- Autoformat
 				-- languages here or re-enable it for the disabled ones.
 				local disable_filetypes = { c = true, cpp = true }
 				return {
-					timeout_ms = 500,
+					timeout_ms = 2500,
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 				}
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				c = { "clang-format" },
+				json = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				javascript = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				typescript = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				javascriptreact = { { "biome", "prettierd", "prettier", "deno_fmt" } },
 				typescriptreact = { { "biome", "prettierd", "prettier", "deno_fmt" } },
-				json = { { "biome", "prettierd", "prettier", "deno_fmt" } },
+				astro = { "prettier" },
 				vue = { { "prettierd", "prettier" } },
 				html = { { "prettierd", "prettier" } },
 				css = { { "prettierd", "prettier" } },

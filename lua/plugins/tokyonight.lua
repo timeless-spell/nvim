@@ -1,6 +1,5 @@
 return {
 	"folke/tokyonight.nvim",
-	name = "Tokyonight",
 	lazy = false,
 	priority = 1000,
 	config = function()
