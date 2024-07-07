@@ -33,14 +33,14 @@ return { -- Autocompletion
 		-- Adds other completion capabilities.
 		--  nvim-cmp does not ship with all sources by default. They are split
 		--  into multiple repos for maintenance purposes.
-		{ "hrsh7th/cmp-nvim-lsp", name = "Cmp Nvim LSP" },
-		{ "hrsh7th/cmp-path", name = "Cmp Path" },
-		{ "chrisgrieser/cmp-nerdfont", name = "Cmp Nerdfont" },
-		{ "hrsh7th/cmp-emoji", name = "Cmp Emoji" },
-		{ "hrsh7th/cmp-buffer", name = "Cmp Buffer" },
-		{ "hrsh7th/cmp-cmdline", name = "Cmp Cmdline" },
-		{ "mtoohey31/cmp-fish", name = "Cmp Fish" },
-		{ "hrsh7th/cmp-nvim-lua", name = "Cmp Nvim Lua" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-path" },
+		{ "chrisgrieser/cmp-nerdfont" },
+		{ "hrsh7th/cmp-emoji" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-cmdline" },
+		{ "mtoohey31/cmp-fish" },
+		{ "hrsh7th/cmp-nvim-lua" },
 	},
 	config = function()
 		-- See `:help cmp`
