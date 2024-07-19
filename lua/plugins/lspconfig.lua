@@ -4,10 +4,9 @@ return { -- LSP Configuration & Plugins
 		{ "williamboman/mason.nvim", config = true },
 		{ "williamboman/mason-lspconfig.nvim" },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-
-		-- { "j-hui/fidget.nvim", opts = {} },
-
 		{ "folke/neodev.nvim", opts = {} },
+		{ "sigmasd/deno-nvim" },
+		{ "pmizio/typescript-tools.nvim" },
 	},
 	config = function()
 		require("lspconfig.ui.windows").default_options.border = "rounded"
@@ -110,11 +109,40 @@ return { -- LSP Configuration & Plugins
 			capabilities = capabilities,
 		})
 
-		-- [[ Deno ]]
-		lspconfig.denols.setup({
+		-- [[ Typescript  Tools]]
+		require("typescript-tools").setup({
 			capabilities = capabilities,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+			root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json"),
 			single_file_support = false,
+			init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = vue_language_server_path,
+						languages = { "vue" },
+					},
+				},
+			},
+			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+		})
+
+		-- [[ Deno ]]
+		require("deno-nvim").setup({
+			server = {
+				capabilities = capabilities,
+				root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+				single_file_support = false,
+			},
+			dap = {
+				adapter = {
+					executable = {
+						args = {
+							vim.env.MASON .. "/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+							"${port}",
+						},
+					},
+				},
+			},
 		})
 
 		local mason_registry = require("mason-registry")
@@ -141,6 +169,7 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				autostart = false,
 			},
 			volar = {},
 			biome = {
@@ -189,7 +218,11 @@ return { -- LSP Configuration & Plugins
 			},
 		}
 
-		require("mason").setup()
+		require("mason").setup({
+			ui = {
+				border = "rounded",
+			},
+		})
 
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

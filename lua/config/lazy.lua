@@ -10,7 +10,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup Lazy
 local opts = {
 	install = {
-		colorscheme = { "tokyonight" },
+		colorscheme = { "cyberdream" },
 	},
 	change_detection = {
 		notify = false,

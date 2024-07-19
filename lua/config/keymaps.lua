@@ -1,3 +1,7 @@
+-- Sets Space as mapleader keymap
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local map = vim.keymap.set
 
 -- Disables Space default behavior in 'normal' and 'visual' mode
@@ -5,8 +9,8 @@ map({ "n", "v" }, " ", "<Nop>", { silent = true })
 -- Removes highlight when sarch for pattern
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+map("n", "[d", vim.diagnostic.get_prev, { desc = "Go to previous diagnostic message" })
+map("n", "]d", vim.diagnostic.get_next, { desc = "Go to next diagnostic message" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open Floating Diagnostic Message" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Diagnostics List" })
 -- Delete buffer
@@ -14,8 +18,7 @@ map("n", "<a-d>", "<cmd>bd<cr>", { noremap = true, desc = "Delete buffer" })
 -- Close current window
 map("n", "<a-q>", "<cmd>q<cr>", { noremap = true, desc = "Close window" })
 -- Save File
-map("n", "<c-s>", "<cmd>write<cr>", { noremap = true, desc = "Save File" })
-map("i", "<c-s>", "<esc><cmd>write<cr>a", { noremap = true, desc = "Save File" })
+map("n", "<leader>s", "<cmd>write<cr>", { noremap = true, desc = "Save File" })
 -- Creates splits to the right
 map("n", "<leader>vs", "<cmd>vsplit<cr>", { desc = "[V]ertical [S]plit" })
 -- Creates splits below

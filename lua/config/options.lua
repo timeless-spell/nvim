@@ -1,7 +1,3 @@
--- Sets Space as mapleader keymap
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Displays number of lines
 vim.opt.number = true
 -- Displays number of lines relative to current line
@@ -62,3 +58,5 @@ vim.g.clipboard = {
 }
 -- Disables backup file
 vim.opt.backup = false
+vim.cmd.colorscheme("cyberdream")
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
