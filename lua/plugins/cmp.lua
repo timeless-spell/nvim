@@ -124,10 +124,11 @@ return { -- Autocompletion
 					mode = "symbol",
 					maxwidth = 50,
 					ellipsis_char = "...",
-					symbol_map = { Codeium = "󱜙" },
+					symbol_map = { Codeium = "󱚥" },
 				}),
 			},
 			sources = {
+				{ name = "lazydev", group_index = 0 },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
