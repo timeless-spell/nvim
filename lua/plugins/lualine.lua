@@ -7,6 +7,15 @@ return {
 	opts = {
 		options = {
 			theme = "auto",
+			extensions = {
+				"neo-tree",
+				"mason",
+				"nvim-dap-ui",
+				"quickfix",
+				"trouble",
+				"symbols-outline",
+			},
+			globalstatus = true,
 		},
 	},
 }
