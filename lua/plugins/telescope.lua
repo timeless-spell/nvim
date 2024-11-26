@@ -44,7 +44,7 @@ return {
 					path = "%:p:h",
 					cwd_to_path = true,
 					layout_strategy = "center",
-					layout_config = { height = 0.60, width = 0.70 },
+					layout_config = { height = 0.65, width = 0.70 },
 					previewer = false,
 					hijack_netrw = true,
 					hidden = {
@@ -176,26 +176,26 @@ return {
 		-- Jump to the definition of the word under your cursor.
 		--  This is where a variable was first declared, or where a function is defined, etc.
 		--  To jump back, press <C-t>.
-		map("n", "<leader>tgd", builtin.lsp_definitions, { desc = "[G]oto [D]efinition" })
+		map("n", "<leader>tgd", builtin.lsp_definitions, { desc = "LSP [D]efinitions" })
 
 		-- Find references for the word under your cursor.
-		map("n", "<leader>tgr", builtin.lsp_references, { desc = "[G]oto [R]eferences" })
+		map("n", "<leader>tgr", builtin.lsp_references, { desc = "LSP [R]eferences" })
 
 		-- Jump to the implementation of the word under your cursor.
 		--  Useful when your language has ways of declaring types without an actual implementation.
-		map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "[G]oto [I]mplementation" })
+		map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "LSP [I]mplementation" })
 
 		-- Jump to the type of the word under your cursor.
 		--  Useful when you're not sure what type a variable is and you want to see
 		--  the definition of its *type*, not where it was *defined*.
-		map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "Type [D]efinition" })
+		map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "LSP Type [D]efinition" })
 
 		-- Fuzzy find all the symbols in your current document.
 		--  Symbols are things like variables, functions, types, etc.
-		map("n", "<leader>tds", builtin.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
+		map("n", "<leader>tds", builtin.lsp_document_symbols, { desc = "LSP [D]ocument [S]ymbols" })
 
 		-- Fuzzy find all the symbols in your current workspace.
 		--  Similar to document symbols, except searches over your entire project.
-		map("n", "<leader>tws", builtin.lsp_dynamic_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
+		map("n", "<leader>tws", builtin.lsp_dynamic_workspace_symbols, { desc = "LSP [W]orkspace [S]ymbols" })
 	end,
 }
