@@ -8,6 +8,7 @@ return {
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
+		local lsputil = require("lspconfig.util")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -58,7 +59,7 @@ return {
 				end
 
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-					map("<leader>ih", function()
+					map("<leader>lih", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "Toggle [I]nlay [H]ints")
 				end
