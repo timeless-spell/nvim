@@ -13,7 +13,6 @@ return {
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-telescope/telescope-file-browser.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-		"jonarrien/telescope-cmdline.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -59,7 +58,6 @@ return {
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
 		pcall(telescope.load_extension, "file_browser")
-		pcall(telescope.load_extension, "cmdline")
 
 		-- [[ Custom Telescope keymaps ]]
 		-- `:h telescope.builtin`
@@ -97,18 +95,29 @@ return {
 		-- `h: telescope.builtin.live_grep`
 		map("n", "<leader>tsg", function()
 			builtin.live_grep({
-				layout_config = { prompt_position = "bottom", width = 0.95, height = 0.95, preview_width = 0.7 },
+				layout_strategy = "vertical",
+				layout_config = { prompt_position = "bottom", width = 0.95, height = 0.95 },
 			})
 		end, { desc = "[S]earch by [G]rep" })
 
 		-- Search word under cursor:
 		-- `:h telescope.builtin.grep_string`
-		map("n", "<leader>tsw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+		map("n", "<leader>tsw", function()
+			builtin.grep_string({
+				layout_strategy = "vertical",
+				layout_config = { prompt_position = "bottom", width = 0.95, height = 0.95 },
+			})
+		end, { desc = "[S]earch current [W]ord" })
 
 		-- Fuzzy search in buffer:
 		-- `:h telescope.builtin.current_buffer_fuzzy_find`
 		map("n", "<leader>t/", function()
-			builtin.current_buffer_fuzzy_find({ layout_strategy = "center", windblend = 10, previewer = false })
+			builtin.current_buffer_fuzzy_find({
+				layout_strategy = "center",
+				windblend = 10,
+				previewer = false,
+				layout_config = { width = 0.6, height = 0.55 },
+			})
 		end, { desc = "[/] Fuzzily search in current buffer" })
 
 		-- Open telescope file browser:
@@ -116,9 +125,12 @@ return {
 		map("n", "<leader>tb", function()
 			telescope.extensions.file_browser.file_browser({
 				cwd = vim.fn.expand("%:p:h"),
-				layout_strategy = "bottom_pane",
+				layout_strategy = "horizontal",
 				layout_config = {
-					height = 0.85,
+					height = 0.90,
+					prompt_position = "top",
+					width = 0.90,
+					preview_width = 0.65,
 				},
 				grouped = true,
 				depth = 2,
@@ -138,7 +150,8 @@ return {
 			builtin.quickfix({
 				layout_strategy = "center",
 				prompt_position = "bottom",
-				layout_config = { height = 0.5, width = 0.7 },
+				layout_config = { width = 0.75 },
+				previewer = false,
 			})
 		end, { desc = "[Q]uiqfix" })
 
@@ -147,8 +160,8 @@ return {
 		map("n", "<leader>t<leader>", function()
 			builtin.buffers({
 				previewer = false,
-				layout_strategy = "vertical",
-				layout_config = { height = 0.75, width = 0.5 },
+				layout_strategy = "center",
+				layout_config = { height = 0.5, width = 0.7 },
 			})
 		end, { desc = "[S]earch Open [B]uffers" })
 
@@ -156,46 +169,45 @@ return {
 		map("n", "<leader>tht", function()
 			builtin.help_tags({
 				layout_strategy = "bottom_pane",
-				layout_config = { prompt_position = "bottom", height = 0.7, preview_width = 0.7 },
+				layout_config = { prompt_position = "bottom", height = 0.8, preview_width = 0.7 },
 			})
 		end, { desc = "[H]elp [T]ags" })
 
 		-- Search Neovim config files:
 		map("n", "<leader>tsn", function()
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
+			builtin.find_files({
+				cwd = vim.fn.stdpath("config"),
+				border = false,
+				previewer = false,
+				layout_strategy = "center",
+				layout_config = { height = 0.7 },
+			})
 		end, { desc = "[S]earch [N]eovim Files" })
 
 		-- Search keymaps:
 		-- `:h telescope.builtin.keymaps`
 		map("n", "<leader>tsk", function()
-			builtin.keymaps({ layout_strategy = "center", layout_config = { width = 0.7, height = 0.5 } })
+			builtin.keymaps({ layout_strategy = "center", layout_config = { width = 0.7, height = 0.6 } })
 		end, { desc = "[S]earch [K]eymaps" })
 
 		-- [[ LSP related keymaps ]]
 
-		-- Jump to the definition of the word under your cursor.
-		--  This is where a variable was first declared, or where a function is defined, etc.
-		--  To jump back, press <C-t>.
-		map("n", "<leader>tgd", builtin.lsp_definitions, { desc = "LSP [D]efinitions" })
+		map("n", "<leader>tgd", function()
+			builtin.lsp_definitions({ layout_config = { width = 0.95, height = 0.95 } })
+		end, { desc = "LSP [D]efinitions" })
 
-		-- Find references for the word under your cursor.
 		map("n", "<leader>tgr", builtin.lsp_references, { desc = "LSP [R]eferences" })
 
-		-- Jump to the implementation of the word under your cursor.
-		--  Useful when your language has ways of declaring types without an actual implementation.
 		map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "LSP [I]mplementation" })
 
-		-- Jump to the type of the word under your cursor.
-		--  Useful when you're not sure what type a variable is and you want to see
-		--  the definition of its *type*, not where it was *defined*.
 		map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "LSP Type [D]efinition" })
 
-		-- Fuzzy find all the symbols in your current document.
-		--  Symbols are things like variables, functions, types, etc.
-		map("n", "<leader>tds", builtin.lsp_document_symbols, { desc = "LSP [D]ocument [S]ymbols" })
+		map("n", "<leader>tds", function()
+			builtin.lsp_document_symbols({ layout_config = { width = 0.95, height = 0.95 } })
+		end, { desc = "LSP [D]ocument [S]ymbols" })
 
-		-- Fuzzy find all the symbols in your current workspace.
-		--  Similar to document symbols, except searches over your entire project.
-		map("n", "<leader>tws", builtin.lsp_dynamic_workspace_symbols, { desc = "LSP [W]orkspace [S]ymbols" })
+		map("n", "<leader>tws", function()
+			builtin.lsp_dynamic_workspace_symbols({ layout_config = { width = 0.95, height = 0.95 } })
+		end, { desc = "LSP [W]orkspace [S]ymbols" })
 	end,
 }
