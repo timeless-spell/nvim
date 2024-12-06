@@ -4,12 +4,20 @@ return {
 		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"saghen/blink.cmp",
+
+		-- NOTE: Use 'blink.cmp' or 'nvim-cmp' for code completion
+		{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+		-- "saghen/blink.cmp",
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
 		local lsputil = require("lspconfig.util")
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+		-- NOTE: Use if 'nvim-cmp' is enabled:
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		-- NOTE: Use if 'blink.cmp' is enabled:
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),

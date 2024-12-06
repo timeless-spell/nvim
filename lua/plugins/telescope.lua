@@ -127,10 +127,10 @@ return {
 				cwd = vim.fn.expand("%:p:h"),
 				layout_strategy = "horizontal",
 				layout_config = {
-					height = 0.90,
+					height = 0.95,
 					prompt_position = "top",
-					width = 0.90,
-					preview_width = 0.65,
+					width = 0.95,
+					preview_width = 0.60,
 				},
 				grouped = true,
 				depth = 2,
