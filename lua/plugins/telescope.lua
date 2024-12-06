@@ -192,22 +192,27 @@ return {
 
 		-- [[ LSP related keymaps ]]
 
-		map("n", "<leader>tgd", function()
-			builtin.lsp_definitions({ layout_config = { width = 0.95, height = 0.95 } })
-		end, { desc = "LSP [D]efinitions" })
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			callback = function(event)
+				map("n", "<leader>tgd", function()
+					builtin.lsp_definitions({ layout_config = { width = 0.95, height = 0.95 } })
+				end, { desc = "LSP [D]efinitions" })
 
-		map("n", "<leader>tgr", builtin.lsp_references, { desc = "LSP [R]eferences" })
+				map("n", "<leader>tgr", builtin.lsp_references, { desc = "LSP [R]eferences" })
 
-		map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "LSP [I]mplementation" })
+				map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "LSP [I]mplementation" })
 
-		map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "LSP Type [D]efinition" })
+				map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "LSP Type [D]efinition" })
 
-		map("n", "<leader>tds", function()
-			builtin.lsp_document_symbols({ layout_config = { width = 0.95, height = 0.95 } })
-		end, { desc = "LSP [D]ocument [S]ymbols" })
+				map("n", "<leader>tds", function()
+					builtin.lsp_document_symbols({ layout_config = { width = 0.95, height = 0.95 } })
+				end, { desc = "LSP [D]ocument [S]ymbols" })
 
-		map("n", "<leader>tws", function()
-			builtin.lsp_dynamic_workspace_symbols({ layout_config = { width = 0.95, height = 0.95 } })
-		end, { desc = "LSP [W]orkspace [S]ymbols" })
+				map("n", "<leader>tws", function()
+					builtin.lsp_dynamic_workspace_symbols({ layout_config = { width = 0.95, height = 0.95 } })
+				end, { desc = "LSP [W]orkspace [S]ymbols" })
+			end,
+		})
 	end,
 }
