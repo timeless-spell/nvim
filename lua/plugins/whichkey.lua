@@ -19,6 +19,8 @@ return {
 
 		wk.add({
 			{ "<leader>t", group = "Telescope", icon = "󰭎" },
+			{ "<leader>tl", group = "LSP", icon = "" },
+			{ "<leader>ts", group = "Search", icon = "󰍉" },
 			{ "<leader>m", group = "Mini", icon = "󰨅" },
 			{ "<leader>T", group = "Trouble", icon = "󱈎" },
 			{ "<leader>g", group = "Git", icon = "" },
