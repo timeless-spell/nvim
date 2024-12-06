@@ -1,8 +1,9 @@
 return {
 	"saghen/blink.cmp",
 	lazy = false,
+	cond = false,
 	dependencies = {
-		{ "saghen/blink.compat", version = "*" },
+		{ "saghen/blink.compat", version = "*", opts = {} },
 		"rafamadriz/friendly-snippets",
 		"niuiic/blink-cmp-rg.nvim",
 		"hrsh7th/cmp-emoji",
@@ -14,23 +15,27 @@ return {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		windows = {
-			autocomplete = {
-				border = "padded",
+		completion = {
+			menu = {
+				border = "rounded",
+				draw = {
+					columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
+				},
+			},
+		},
+		documentation = {
+			auto_show = true,
+			window = {
+				border = "rounded",
 				windblend = 20,
 			},
-			documentation = {
-				border = "padded",
-				windblend = 20,
-				auto_show = true,
-				auto_show_delay_ms = 50,
+			ghost_text = {
+				enabled = true,
 			},
-			signature_help = {
-				border = "padded",
-			},
-			highlight = {
-				use_nvim_cmp_as_default = true,
-			},
+		},
+		autocomplete = {
+			border = "padded",
+			windblend = 20,
 		},
 		sources = {
 			completion = {
@@ -53,7 +58,6 @@ return {
 					module = "blink-cmp-rg",
 					name = "Ripgrep",
 				},
-
 				emoji = {
 					name = "emoji",
 					module = "blink.compat.source",
