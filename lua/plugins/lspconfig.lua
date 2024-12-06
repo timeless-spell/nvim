@@ -4,7 +4,10 @@ return {
 		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"saghen/blink.cmp",
+
+		-- NOTE: Use 'blink.cmp' or 'nvim-cmp' for code completion
+		{ "iguanacucumber/magazine.nvim", name = "nvim-cmp" },
+		-- "saghen/blink.cmp",
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
