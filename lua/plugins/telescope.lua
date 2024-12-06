@@ -193,25 +193,38 @@ return {
 		-- [[ LSP related keymaps ]]
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("telescope-lsp-attach", { clear = true }),
 			callback = function(event)
-				map("n", "<leader>tgd", function()
+				map("n", "<leader>tld", function()
 					builtin.lsp_definitions({ layout_config = { width = 0.95, height = 0.95 } })
-				end, { desc = "LSP [D]efinitions" })
+				end, { desc = "[L]SP [D]efinitions" })
 
-				map("n", "<leader>tgr", builtin.lsp_references, { desc = "LSP [R]eferences" })
+				map("n", "<leader>tlr", function()
+					builtin.lsp_references({
+						layout_strategy = "vertical",
+						layout_config = { width = 0.95, height = 0.95 },
+					})
+				end, { desc = "[L]SP [R]eferences" })
 
-				map("n", "<leader>tgI", builtin.lsp_implementations, { desc = "LSP [I]mplementation" })
+				map("n", "<leader>tlI", function()
+					builtin.lsp_implementations({
+						layout_strategy = "vertical",
+						layout_config = { width = 0.95, height = 0.95 },
+					})
+				end, { desc = "[L]SP [I]mplementation" })
 
-				map("n", "<leader>tD", builtin.lsp_type_definitions, { desc = "LSP Type [D]efinition" })
+				map("n", "<leader>tlD", builtin.lsp_type_definitions, { desc = "[L]SP Type [D]efinition" })
 
-				map("n", "<leader>tds", function()
+				map("n", "<leader>tlo", function()
 					builtin.lsp_document_symbols({ layout_config = { width = 0.95, height = 0.95 } })
-				end, { desc = "LSP [D]ocument [S]ymbols" })
+				end, { desc = "[L]SP [D]ocument Symbols" })
 
-				map("n", "<leader>tws", function()
-					builtin.lsp_dynamic_workspace_symbols({ layout_config = { width = 0.95, height = 0.95 } })
-				end, { desc = "LSP [W]orkspace [S]ymbols" })
+				map("n", "<leader>tlw", function()
+					builtin.lsp_dynamic_workspace_symbols({
+						layout_strategy = "vertical",
+						layout_config = { width = 0.95, height = 0.95 },
+					})
+				end, { desc = "[L]SP [W]orkspace Symbols" })
 			end,
 		})
 	end,
