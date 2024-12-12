@@ -1,28 +1,33 @@
 return {
 	"lewis6991/hover.nvim",
-	keys = {
-		{
-			"<leader>K",
-			function()
-				require("hover").hover()
-			end,
-			desc = "Hover",
-		},
-		{
-			"<leader>gK",
-			function()
-				require("hover").hover_select()
-			end,
-			desc = "Hover Select",
-		},
-		{
-			"<mousemove>",
-			function()
-				require("hover").hover_mouse()
-			end,
-			desc = "Mouse Hover",
-		},
-	},
+	lazy = true,
+	event = "LspAttach",
+	keys = function()
+		local hover = require("hover")
+		return {
+			{
+				"<leader>lK",
+				function()
+					hover.hover()
+				end,
+				desc = "Hover",
+			},
+			{
+				"<leader>lhs",
+				function()
+					hover.hover_select()
+				end,
+				desc = "Hover Select",
+			},
+			{
+				"<MouseMove>",
+				function()
+					hover.hover_mouse()
+				end,
+				desc = "Mouse Hover",
+			},
+		}
+	end,
 	opts = {
 		init = function()
 			require("hover.providers.lsp")
@@ -32,13 +37,7 @@ return {
 			require("hover.providers.gh")
 		end,
 		preview_opts = {
-			border = "single",
+			border = "solid",
 		},
-		mouse_providers = {
-			"lsp",
-		},
-		mouse_delay = 1000,
-		preview_window = false,
-		title = true,
 	},
 }
