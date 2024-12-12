@@ -21,11 +21,13 @@ gset.clipboard = {
 
 local set = vim.opt
 
+set.autoread = true
 set.number = true
 set.cursorline = true
 set.relativenumber = true
 set.undofile = true
 set.mouse = "a"
+set.mousemoveevent = true
 set.ignorecase = true
 set.smartcase = true
 set.signcolumn = "yes"
