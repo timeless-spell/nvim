@@ -43,7 +43,7 @@ return {
 					path = "%:p:h",
 					cwd_to_path = true,
 					layout_strategy = "center",
-					layout_config = { height = 0.65, width = 0.70 },
+					layout_config = { height = 0.8, width = 0.8 },
 					previewer = false,
 					hijack_netrw = true,
 					hidden = {
@@ -51,6 +51,7 @@ return {
 						folder_browser = true,
 					},
 				},
+				["fzf"] = {},
 			},
 		})
 
@@ -79,7 +80,7 @@ return {
 				hidden = true,
 				layout_config = { width = 0.95, height = 0.95, preview_width = 0.6 },
 			})
-		end, { desc = "[S]earch [F]iles (current buffer)" })
+		end, { desc = "[S]earch Files ([c]urrent buffer)" })
 
 		-- Old files:
 		-- search recently open files `:h telescope.builtin.oldfiles`
@@ -166,12 +167,12 @@ return {
 		end, { desc = "[S]earch Open [B]uffers" })
 
 		-- Search help tags:
-		map("n", "<leader>tht", function()
+		map("n", "<leader>tsh", function()
 			builtin.help_tags({
 				layout_strategy = "bottom_pane",
 				layout_config = { prompt_position = "bottom", height = 0.8, preview_width = 0.7 },
 			})
-		end, { desc = "[H]elp [T]ags" })
+		end, { desc = "[S]earch [H]elp" })
 
 		-- Search Neovim config files:
 		map("n", "<leader>tsn", function()
@@ -189,6 +190,14 @@ return {
 		map("n", "<leader>tsk", function()
 			builtin.keymaps({ layout_strategy = "center", layout_config = { width = 0.7, height = 0.6 } })
 		end, { desc = "[S]earch [K]eymaps" })
+
+		map("n", "<leader>tsl", function()
+			builtin.find_files({
+				cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
+				hidden = true,
+				layout_config = { width = 0.95, height = 0.95, preview_width = 0.6 },
+			})
+		end, { desc = "[S]earch Files ([L]azy)" })
 
 		-- [[ LSP related keymaps ]]
 
