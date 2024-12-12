@@ -1,6 +1,7 @@
 return {
 	"iguanacucumber/magazine.nvim",
 	name = "nvim-cmp",
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
 		{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
@@ -24,7 +25,6 @@ return {
 			},
 		},
 		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"mtoohey31/cmp-fish",
 		"hrsh7th/cmp-emoji",
 		"chrisgrieser/cmp-nerdfont",
@@ -32,15 +32,19 @@ return {
 		"onsails/lspkind.nvim",
 	},
 	config = function()
-		-- See `:help cmp`
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
 
 		cmp.setup({
+			view = {
+				entries = {
+					selection_order = "near_cursor",
+				},
+			},
 			window = {
-				completion = { border = "single", winblend = 20 },
-				documentation = { border = "double" },
+				completion = { border = "solid", winblend = 20 },
+				documentation = { border = "solid", winblend = 20 },
 			},
 			snippet = {
 				expand = function(args)
@@ -67,6 +71,13 @@ return {
 						luasnip.jump(-1)
 					end
 				end, { "i", "s" }),
+				["<Up>"] = cmp.mapping(function(fallback)
+					fallback() -- Allows Up arrow to fall back without interacting with cmp
+				end, { "i", "c" }),
+
+				["<Down>"] = cmp.mapping(function(fallback)
+					fallback() -- Allows Down arrow to fall back without interacting with cmp
+				end, { "i", "c" }),
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -78,10 +89,9 @@ return {
 				},
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
-				{ name = "path" },
+				{ name = "nvim_lua" },
 				{ name = "buffer" },
 				{ name = "async_path" },
-				{ name = "nvim_lsp_signature_help" },
 				{ name = "fish" },
 				{ name = "emoji" },
 				{ name = "nerdfont" },
@@ -96,8 +106,19 @@ return {
 				format = function(entry, item)
 					local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
 					item = require("lspkind").cmp_format({
-						-- any lspkind format settings here
 						mode = "symbol_text",
+						menu = {
+							lazydev = "[Lazydev]",
+							buffer = "[Buffer]",
+							nvim_lsp = "[LSP]",
+							luasnip = "[LuaSnip]",
+							async_path = "[Path]",
+							nvim_lua = "[Lua]",
+							latex_symbols = "[Latex]",
+							fish = "[Fish]",
+							emoji = "[Emoji]",
+							nerdfont = "[Nerdfont]",
+						},
 						maxwidth = {
 							-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 							-- can also be a function to dynamically calculate max width such as
