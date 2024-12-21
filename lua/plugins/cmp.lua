@@ -30,6 +30,12 @@ return {
 		"chrisgrieser/cmp-nerdfont",
 		"kdheepak/cmp-latex-symbols",
 		"onsails/lspkind.nvim",
+		{
+			"Exafunction/codeium.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+		},
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -83,10 +89,7 @@ return {
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 			}),
 			sources = {
-				{
-					name = "lazydev",
-					group_index = 0,
-				},
+				{ name = "codeium" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },
@@ -107,8 +110,8 @@ return {
 					local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
 					item = require("lspkind").cmp_format({
 						mode = "symbol_text",
+						symbol_map = { Codeium = "" },
 						menu = {
-							lazydev = "[Lazydev]",
 							buffer = "[Buffer]",
 							nvim_lsp = "[LSP]",
 							luasnip = "[LuaSnip]",
@@ -135,6 +138,13 @@ return {
 					end
 					return item
 				end,
+			},
+		})
+
+		require("codeium").setup({
+			enable_chat = false,
+			virtual_text = {
+				enabled = false,
 			},
 		})
 	end,
