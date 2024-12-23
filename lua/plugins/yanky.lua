@@ -29,11 +29,6 @@ return {
 			preserve_cursor_position = {
 				enabled = true,
 			},
-			ring = {
-				permanent_wrapper = function()
-					require("yanky.wrappers").remove_carriage_return()
-				end,
-			},
 			on_substitute = function()
 				require("yanky.integration").substitute()
 			end,
