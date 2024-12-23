@@ -44,7 +44,7 @@ return {
 						preview_width = 0.8,
 					},
 				})
-			end, { desc = "Yanky History" })
+			end, { desc = "Telescope Aerial" })
 		end,
 	},
 }

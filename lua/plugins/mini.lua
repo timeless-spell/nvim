@@ -1,5 +1,8 @@
 return {
 	"echasnovski/mini.nvim",
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
 	event = "VeryLazy",
 	version = false,
 	config = function()
@@ -8,8 +11,14 @@ return {
 		-- [[ Mini ai ]]
 		require("mini.ai").setup()
 
-		-- [[ Mini cursorword ]]
-		require("mini.comment").setup()
+		-- [[ Mini comment ]]
+		require("mini.comment").setup({
+			options = {
+				custom_commentstring = function()
+					return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+				end,
+			},
+		})
 
 		-- [[ Mini cursorword ]]
 		require("mini.cursorword").setup()

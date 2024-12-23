@@ -29,6 +29,13 @@ map("n", "<c-down>", "<CMD>resize +2<CR><cr>", { noremap = true, silent = true, 
 map("n", "<c-left>", "<CMD>vertical resize -2<cr>", { noremap = true, silent = true, desc = "Resize split Left" })
 map("n", "<c-right>", "<CMD>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Resize split Right" })
 
+-- [[ Diagnostic keymaps ]]
+map("n", "<leader>ll", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list" })
+map("n", "<leader>lq", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>le", vim.diagnostic.open_float, { desc = "Open Floating diagnostic " })
+map("n", "<leader>ln", vim.diagnostic.get_next, { desc = "Open diagnostic Next Diagnostic" })
+map("n", "<leader>lp", vim.diagnostic.get_prev, { desc = "Open diagnostic Previous Diagnostic" })
+
 -- Deleted default keymaps to avoid duplicates
 dmap({ "n", "x" }, "gra")
 dmap("n", "grr")

@@ -20,7 +20,24 @@ return {
 			{ "=p", "<Plug>(YankyPutAfterFilter)" },
 			{ "=P", "<Plug>(YankyPutBeforeFilter)" },
 		},
-		opts = {},
+		opts = {
+			highlight = {
+				on_put = true,
+				-- on_yank = true,
+				timer = 500,
+			},
+			preserve_cursor_position = {
+				enabled = true,
+			},
+			ring = {
+				permanent_wrapper = function()
+					require("yanky.wrappers").remove_carriage_return()
+				end,
+			},
+			on_substitute = function()
+				require("yanky.integration").substitute()
+			end,
+		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",

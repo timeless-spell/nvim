@@ -12,7 +12,7 @@ return {
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-telescope/telescope-file-browser.nvim" },
-		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+		{ "nvim-tree/nvim-web-devicons" },
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -121,7 +121,7 @@ return {
 			})
 		end, { desc = "[/] Fuzzily search in current buffer" })
 
-		-- Open telescope file browser:
+		-- Open telescope file browser (Extension):
 		-- `:h telescope-file-browser`
 		map("n", "<leader>tb", function()
 			telescope.extensions.file_browser.file_browser({

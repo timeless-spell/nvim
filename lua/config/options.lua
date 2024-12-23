@@ -1,25 +1,11 @@
 local gset = vim.g
+local set = vim.opt
 
 gset.mapleader = " "
 gset.maplocalleader = " "
 
 gset.loaded_python3_provider = 0
 gset.loaded_perl_provider = 0
-
-gset.clipboard = {
-	name = "win32yank-wsl",
-	copy = {
-		["+"] = "win32yank.exe -i --crlf",
-		["*"] = "win32yank.exe -i --crlf",
-	},
-	paste = {
-		["+"] = "win32yank.exe -i --lf",
-		["*"] = "win32yank.exe -i --lf",
-	},
-	cache_enabled = 0,
-}
-
-local set = vim.opt
 
 set.autoread = true
 set.number = true
@@ -41,3 +27,20 @@ set.backup = false
 set.showmode = false
 set.list = true
 set.listchars = { tab = "| ", eol = "󰘌" }
+
+vim.schedule(function()
+	set.clipboard = "unnamedplus"
+end)
+
+gset.clipboard = {
+	name = "win32yank-wsl",
+	copy = {
+		["+"] = "win32yank.exe -i --crlf",
+		["*"] = "win32yank.exe -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank.exe -i --lf",
+		["*"] = "win32yank.exe -i --lf",
+	},
+	cache_enabled = 0,
+}

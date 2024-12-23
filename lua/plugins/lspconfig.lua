@@ -4,26 +4,15 @@ return {
 		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-		-- NOTE: Use 'blink.cmp' or 'nvim-cmp' for code completion
-		{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
-		-- "saghen/blink.cmp",
+		{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp" },
 	},
-	config = function(_, opts)
-		local lspconfig = require("lspconfig")
-		local lsputil = require("lspconfig.util")
-
-		-- NOTE: Use if 'nvim-cmp' is enabled:
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-		-- NOTE: Use if 'blink.cmp' is enabled:
-		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
-
+	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
-				local map = function(keys, func, desc)
-					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+				local map = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
 				map("<leader>lgd", vim.lsp.buf.definition, "[G]oto Definition")
@@ -36,15 +25,10 @@ return {
 				map("<leader>lca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("<leader>lws", vim.lsp.buf.workspace_symbol, "[W}orkspace [S]ymbol")
 				map("<leader>lds", vim.lsp.buf.document_symbol, "[D]ocument [S]ymbol")
-				map("<leader>ll", vim.diagnostic.setloclist, "Open diagnostic [L]ocation list")
-				map("<leader>lq", vim.diagnostic.setqflist, "Open diagnostic [Q]uickfix list")
-				map("<leader>le", vim.diagnostic.open_float, "Open Floating Diagnostic Message")
-				map("<leader>ln", vim.diagnostic.get_next, "Next diagnostic message")
-				map("<leader>lp", vim.diagnostic.get_prev, "Previous diagnostic message")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
 						group = highlight_augroup,
@@ -58,28 +42,39 @@ return {
 					})
 
 					vim.api.nvim_create_autocmd("LspDetach", {
-						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 						end,
 					})
 				end
 
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-					map("<leader>lih", function()
+					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-					end, "Toggle [I]nlay [H]ints")
+					end, "[T]oggle Inlay [H]ints")
 				end
 			end,
 		})
 
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
 		local servers = {
 			lua_ls = {
+				-- cmd = { ... },
+				-- filetypes = { ... },
+				-- capabilities = {},
 				settings = {
 					Lua = {
 						completion = {
 							callSnippet = "Replace",
+						},
+						diagnostics = {
+							disable = {
+								"missing-fields",
+							},
 						},
 						hint = {
 							enable = true,
@@ -98,9 +93,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua",
-			"taplo",
 		})
-
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
@@ -108,7 +101,7 @@ return {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					lspconfig[server_name].setup(server)
+					require("lspconfig")[server_name].setup(server)
 				end,
 			},
 		})

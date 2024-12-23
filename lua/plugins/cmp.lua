@@ -30,12 +30,7 @@ return {
 		"chrisgrieser/cmp-nerdfont",
 		"kdheepak/cmp-latex-symbols",
 		"onsails/lspkind.nvim",
-		{
-			"Exafunction/codeium.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-		},
+		-- "Exafunction/codeium.vim",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -78,18 +73,17 @@ return {
 					end
 				end, { "i", "s" }),
 				["<Up>"] = cmp.mapping(function(fallback)
-					fallback() -- Allows Up arrow to fall back without interacting with cmp
+					fallback()
 				end, { "i", "c" }),
 
 				["<Down>"] = cmp.mapping(function(fallback)
-					fallback() -- Allows Down arrow to fall back without interacting with cmp
+					fallback()
 				end, { "i", "c" }),
 
-				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+				-- NOTE: For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+				-- https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 			}),
 			sources = {
-				{ name = "codeium" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },
@@ -101,7 +95,7 @@ return {
 				{
 					name = "latex_symbols",
 					option = {
-						strategy = 0, -- mixed
+						strategy = 0,
 					},
 				},
 			},
@@ -129,8 +123,8 @@ return {
 							menu = 50, -- leading text (labelDetails)
 							abbr = 50, -- actual suggestion item
 						},
-						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-						show_labelDetails = true, -- show labelDeta
+						ellipsis_char = "...",
+						show_labelDetails = true,
 					})(entry, item)
 					if color_item.abbr_hl_group then
 						item.kind_hl_group = color_item.abbr_hl_group
@@ -141,11 +135,17 @@ return {
 			},
 		})
 
-		require("codeium").setup({
-			enable_chat = false,
-			virtual_text = {
-				enabled = false,
-			},
-		})
+		-- vim.keymap.set("i", "<c-g>", function()
+		-- 	return vim.fn["codeium#Accept"]()
+		-- end, { expr = true, silent = true })
+		-- vim.keymap.set("i", "<c-;>", function()
+		-- 	return vim.fn["codeium#CycleCompletions"](1)
+		-- end, { expr = true, silent = true })
+		-- vim.keymap.set("i", "<c-,>", function()
+		-- 	return vim.fn["codeium#CycleCompletions"](-1)
+		-- end, { expr = true, silent = true })
+		-- vim.keymap.set("i", "<c-x>", function()
+		-- 	return vim.fn["codeium#Clear"]()
+		-- end, { expr = true, silent = true })
 	end,
 }
