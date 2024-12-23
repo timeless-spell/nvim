@@ -28,10 +28,6 @@ set.showmode = false
 set.list = true
 set.listchars = { tab = "| ", eol = "󰘌" }
 
-vim.schedule(function()
-	set.clipboard = "unnamedplus"
-end)
-
 gset.clipboard = {
 	name = "win32yank-wsl",
 	copy = {
