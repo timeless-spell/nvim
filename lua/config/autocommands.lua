@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local initial_path = vim.fn.getenv("PATH")
 		local pattern_starts = string.find(initial_path, "/mnt")
-		local extracted_path = string.sub(initial_path, 1, pattern_starts - 2)
+		local extracted_path = string.sub(initial_path, 1, pattern_starts - 2) .. ":/mnt/c/Users/Angju/scoop/apps/win32yank/current/"
 		vim.fn.setenv("PATH", extracted_path)
 	end,
 })
