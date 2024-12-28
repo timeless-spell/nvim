@@ -6,6 +6,7 @@ return {
 		{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
 		{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
 		{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+		{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
 		{ "FelipeLema/cmp-async-path" },
 		{
 			"L3MON4D3/LuaSnip",
@@ -105,7 +106,8 @@ return {
 						mode = "symbol_text",
 						symbol_map = { Codeium = "" },
 						menu = {
-							buffer = "[Buffer]",
+							cmdline = "[CMD]",
+							buffer = "[Buf]",
 							nvim_lsp = "[LSP]",
 							luasnip = "[LuaSnip]",
 							async_path = "[Path]",
@@ -132,6 +134,22 @@ return {
 					return item
 				end,
 			},
+		})
+
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 	end,
 }
