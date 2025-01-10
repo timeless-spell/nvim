@@ -6,28 +6,28 @@ return {
 	},
 	keys = {
 		{
-			"<leader>Fsf",
+			"<leader>fsf",
 			function()
 				require("fzf-lua").files({})
 			end,
 			desc = "Fzf [ Files ]",
 		},
 		{
-			"<leader>Fz",
+			"<leader>fz",
 			function()
 				require("fzf-lua").files({ cwd = "~" })
 			end,
 			desc = "Fzf [ Global ]",
 		},
 		{
-			"<leader>Fsc",
+			"<leader>fsc",
 			function()
 				require("fzf-lua").files({ cwd = "~/.config" })
 			end,
 			desc = "Fzf [ Config ]",
 		},
 		{
-			"<leader>Fds",
+			"<leader>fds",
 			function()
 				require("fzf-lua").lsp_document_symbols({})
 			end,
