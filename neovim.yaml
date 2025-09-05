@@ -1,0 +1,10 @@
+base: lua51
+globals:
+  vim:
+    any: true
+  MiniDiff:
+    any: true
+  MiniDeps:
+    any: true
+  Angju:
+    any: true

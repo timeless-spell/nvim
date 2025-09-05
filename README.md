@@ -1,0 +1,1 @@
+## Base Neovim setup  (WIP)
