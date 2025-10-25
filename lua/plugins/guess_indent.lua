@@ -1,7 +1,7 @@
 MiniDeps.later (function ()
-  MiniDeps.add ({
-    source = 'NMAC427/guess-indent.nvim',
-  })
+    MiniDeps.add ({
+        source = "NMAC427/guess-indent.nvim",
+    })
 
-  require ('guess-indent').setup ()
+    require ("guess-indent").setup ()
 end)

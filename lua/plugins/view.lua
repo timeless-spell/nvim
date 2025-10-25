@@ -1,11 +1,11 @@
 MiniDeps.later (function ()
-  MiniDeps.add ({
-    source = 'OXY2DEV/markview.nvim',
-  })
+    MiniDeps.add ({
+        source = "OXY2DEV/markview.nvim",
+    })
 end)
 
 MiniDeps.later (function ()
-  MiniDeps.add ({
-    source = 'OXY2DEV/helpview.nvim',
-  })
+    MiniDeps.add ({
+        source = "OXY2DEV/helpview.nvim",
+    })
 end)
