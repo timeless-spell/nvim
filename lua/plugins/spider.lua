@@ -1,22 +1,37 @@
-MiniDeps.later (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "chrisgrieser/nvim-spider",
     })
 
-    local spider = require ("spider")
-    spider.setup ({})
+    local spider = require("spider")
+    spider.setup({})
 
-    local map = Angju.map
+    local keymaps = {
+        {
+            keys = "e",
+            func = function ()
+                spider.motion("e")
+            end,
+            desc = "Spider [e]",
+            mode = { "n", "x", "o" },
+        },
+        {
+            keys = "w",
+            func = function ()
+                spider.motion("w")
+            end,
+            desc = "Spider [w]",
+            mode = { "n", "x", "o" },
+        },
+        {
+            keys = "b",
+            func = function ()
+                spider.motion("b")
+            end,
+            desc = "Spider [b]",
+            mode = { "n", "x", "o" },
+        },
+    }
 
-    map ("e", function ()
-        spider.motion ("e")
-    end, "Spider [e]", { "n", "x", "o" })
-
-    map ("w", function ()
-        spider.motion ("w")
-    end, "Spider [w]", { "n", "x", "o" })
-
-    map ("b", function ()
-        spider.motion ("b")
-    end, "Spider [b]", { "n", "x", "o" })
+    Angju.multi_map(keymaps)
 end)

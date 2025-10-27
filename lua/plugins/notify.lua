@@ -1,15 +1,14 @@
-MiniDeps.now (function ()
-    MiniDeps.add ({
+MiniDeps.now(function ()
+    MiniDeps.add({
         source = "rcarriga/nvim-notify",
-        -- depends = {
-        --   'j-hui/fidget.nvim',
-        -- },
     })
 
-    local notify = require ("notify")
+    local notify = require("notify")
 
-    notify.setup ({
+    notify.setup({
         stager = "fade",
         timeout = 2000,
     })
+
+    vim.notify = require("notify")
 end)

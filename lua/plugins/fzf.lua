@@ -1,78 +1,89 @@
-MiniDeps.later (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "ibhagwan/fzf-lua",
     })
 
-    local fzf = require ("fzf-lua")
+    local fzf = require("fzf-lua")
 
-    fzf.setup ({
+    fzf.setup({
         files = {
             previewer = "bat",
         },
     })
 
-    local map = Angju.map
-    --
-    -- Buffers and Files
-    --
-    map ("<leader>ff", fzf.files, "Files [Fzf]")
-    map ("<leader>fx", function ()
-        fzf.files ({ cwd = "~" })
-    end, "Global [Fzf]")
-    map ("<leader>fC", function ()
-        fzf.files ({ cwd = "~/.config" })
-    end, "Config [Fzf]")
-    map ("<leader>fb", fzf.buffers, "Buffers [Fzf]")
-    map ("<leader>fo", fzf.oldfiles, "Recent files [Fzf]")
-    map ("<leader>fq", fzf.quickfix, "Quickfix list [Fzf]")
-    map ("<leader>fQ", fzf.quickfix_stack, "Quickfix stack [Fzf]")
-    map ("<leader>fc", fzf.loclist, "Loclist list [Fzf]")
-    map ("<leader>fC", fzf.loclist_stack, "Loclist stack [Fzf]")
-    map ("<leader>fn", fzf.lines, "Open buffers lines [Fzf]")
-    map ("<leader>fN", fzf.blines, "Current buffer lines [Fzf]")
-    map ("<leader>fT", fzf.treesitter, "Current buffer Treesitter symbols [Fzf]")
-    map ("<leader>ft", fzf.tabs, "Open tabs [Fzf]")
-    map ("<leader>fa", fzf.args, "Argument list [Fzf]")
+    local keymaps = {
+        --
+        -- Buffers and Files
+        --
+        { keys = "<leader>ff", func = fzf.files, desc = "Files [Fzf]" },
+        {
+            keys = "<leader>fx",
+            func = function ()
+                fzf.files({ cwd = "~" })
+            end,
+            desc = "Global [Fzf]",
+        },
+        {
+            keys = "<leader>fC",
+            func = function ()
+                fzf.files({ cwd = "~/.config" })
+            end,
+            desc = "Config [Fzf]",
+        },
+        { keys = "<leader>fb", func = fzf.buffers, desc = "Buffers [Fzf]" },
+        { keys = "<leader>fo", func = fzf.oldfiles, desc = "Recent files [Fzf]" },
+        { keys = "<leader>fq", func = fzf.quickfix, desc = "Quickfix list [Fzf]" },
+        { keys = "<leader>fQ", func = fzf.quickfix_stack, desc = "Quickfix stack [Fzf]" },
+        { keys = "<leader>fc", func = fzf.loclist, desc = "Loclist list [Fzf]" },
+        { keys = "<leader>fC", func = fzf.loclist_stack, desc = "Loclist stack [Fzf]" },
+        { keys = "<leader>fn", func = fzf.lines, desc = "Open buffers lines [Fzf]" },
+        { keys = "<leader>fN", func = fzf.blines, desc = "Current buffer lines [Fzf]" },
+        { keys = "<leader>fT", func = fzf.treesitter, desc = "Current buffer Treesitter symbols [Fzf]" },
+        { keys = "<leader>ft", func = fzf.tabs, desc = "Open tabs [Fzf]" },
+        { keys = "<leader>fa", func = fzf.args, desc = "Argument list [Fzf]" },
 
-    --
-    -- Search
-    --
-    map ("<leader>fwg", fzf.grep, "Search pattern [Fzf]")
-    map ("<leader>fwl", fzf.grep_last, "Search last pattern [Fzf]")
-    map ("<leader>fww", fzf.grep_cword, "Search word under cursor [Fzf]")
-    map ("<leader>fwW", fzf.grep_cWORD, "Search WORD under cursor [Fzf]")
-    map ("<leader>fwV", fzf.grep_visual, "Search visual selection [Fzf]")
-    map ("<leader>fwp", fzf.grep_project, "Search all project lines [Fzf]")
-    map ("<leader>fwb", fzf.grep_curbuf, "Search current buffer lines [Fzf]")
-    map ("<leader>fwq", fzf.grep_quickfix, "Search the quickfix list [Fzf]")
-    map ("<leader>fwc", fzf.grep_loclist, "Search the loccation list [Fzf]")
+        --
+        -- Search
+        --
+        { keys = "<leader>fwg", func = fzf.grep, desc = "Search pattern [Fzf]" },
+        { keys = "<leader>fwl", func = fzf.grep_last, desc = "Search last pattern [Fzf]" },
+        { keys = "<leader>fww", func = fzf.grep_cword, desc = "Search word under cursor [Fzf]" },
+        { keys = "<leader>fwW", func = fzf.grep_cWORD, desc = "Search WORD under cursor [Fzf]" },
+        { keys = "<leader>fwV", func = fzf.grep_visual, desc = "Search visual selection [Fzf]" },
+        { keys = "<leader>fwp", func = fzf.grep_project, desc = "Search all project lines [Fzf]" },
+        { keys = "<leader>fwb", func = fzf.grep_curbuf, desc = "Search current buffer lines [Fzf]" },
+        { keys = "<leader>fwq", func = fzf.grep_quickfix, desc = "Search the quickfix list [Fzf]" },
+        { keys = "<leader>fwc", func = fzf.grep_loclist, desc = "Search the loccation list [Fzf]" },
 
-    map ("<leader>fwf", fzf.lgrep_curbuf, "Live grep curent buffer [Fzf]")
-    map ("<leader>fwx", fzf.lgrep_quickfix, "Live grep the quickfix list [Fzf]")
-    map ("<leader>fws", fzf.lgrep_loclist, "Live grep the location list[Fzf]")
-    map ("<leader>fwv", fzf.live_grep, "Live grep current project [Fzf]")
-    map ("<leader>fwr", fzf.live_grep_resume, "Live grep last search [Fzf]")
-    map ("<leader>fwo", fzf.live_grep_glob, 'Live grep "rg --glob" [Fzf]')
-    map ("<leader>fwG", fzf.live_grep_native, "Live grep native [Fzf]")
+        { keys = "<leader>fwf", func = fzf.lgrep_curbuf, desc = "Live grep curent buffer [Fzf]" },
+        { keys = "<leader>fwx", func = fzf.lgrep_quickfix, desc = "Live grep the quickfix list [Fzf]" },
+        { keys = "<leader>fws", func = fzf.lgrep_loclist, desc = "Live grep the location list[Fzf]" },
+        { keys = "<leader>fwv", func = fzf.live_grep, desc = "Live grep current project [Fzf]" },
+        { keys = "<leader>fwr", func = fzf.live_grep_resume, desc = "Live grep last search [Fzf]" },
+        { keys = "<leader>fwo", func = fzf.live_grep_glob, desc = "Live grep 'rg --glob' [Fzf]" },
+        { keys = "<leader>fwG", func = fzf.live_grep_native, desc = "Live grep native [Fzf]" },
 
-    --
-    -- LSP
-    --
-    map ("<leader>flr", fzf.lsp_references, "LSP References [Fzf]")
-    map ("<leader>fld", fzf.lsp_definitions, "LSP Definitions [Fzf]")
-    map ("<leader>flD", fzf.lsp_declarations, "LSP Declarations [Fzf]")
-    map ("<leader>flt", fzf.lsp_typedefs, "LSP Type Definitions [Fzf]")
-    map ("<leader>fli", fzf.lsp_implementations, "LSP Implementations [Fzf]")
-    map ("<leader>fls", fzf.lsp_document_symbols, "LSP Document Symbols [Fzf]")
-    map ("<leader>flw", fzf.lsp_workspace_symbols, "LSP Workspace Symbols [Fzf]")
-    map ("<leader>flW", fzf.lsp_live_workspace_symbols, "LSP Workspace Symbols (live query) [Fzf]")
-    map ("<leader>fla", fzf.lsp_code_actions, "LSP Code Actions [Fzf]")
-    map ("<leader>flF", fzf.lsp_finder, "LSP Locations, combined view [Fzf]")
-    map ("<leader>flg", fzf.lsp_document_diagnostics, "LSP Diagnostics Document [Fzf]")
-    map ("<leader>flG", fzf.lsp_workspace_diagnostics, "LSP Diagnostics Workspace [Fzf]")
+        --
+        -- LSP
+        --
+        { keys = "<leader>flr", func = fzf.lsp_references, desc = "LSP References [Fzf]" },
+        { keys = "<leader>fld", func = fzf.lsp_definitions, desc = "LSP Definitions [Fzf]" },
+        { keys = "<leader>flD", func = fzf.lsp_declarations, desc = "LSP Declarations [Fzf]" },
+        { keys = "<leader>flt", func = fzf.lsp_typedefs, desc = "LSP Type Definitions [Fzf]" },
+        { keys = "<leader>fli", func = fzf.lsp_implementations, desc = "LSP Implementations [Fzf]" },
+        { keys = "<leader>fls", func = fzf.lsp_document_symbols, desc = "LSP Document Symbols [Fzf]" },
+        { keys = "<leader>flw", func = fzf.lsp_workspace_symbols, desc = "LSP Workspace Symbols [Fzf]" },
+        { keys = "<leader>flW", func = fzf.lsp_live_workspace_symbols, desc = "LSP Workspace Symbols (live query) [Fzf]" },
+        { keys = "<leader>fla", func = fzf.lsp_code_actions, desc = "LSP Code Actions [Fzf]" },
+        { keys = "<leader>flF", func = fzf.lsp_finder, desc = "LSP Locations, combined view [Fzf]" },
+        { keys = "<leader>flg", func = fzf.lsp_document_diagnostics, desc = "LSP Diagnostics Document [Fzf]" },
+        { keys = "<leader>flG", func = fzf.lsp_workspace_diagnostics, desc = "LSP Diagnostics Workspace [Fzf]" },
 
-    --
-    -- Zoxide
-    --
-    map ("<leader>fZ", fzf.zoxide, "Zoxide [Fzf]")
+        --
+        -- Zoxide
+        --
+        { keys = "<leader>fZ", func = fzf.zoxide, desc = "Zoxide [Fzf]" },
+    }
+
+    Angju.multi_map(keymaps)
 end)

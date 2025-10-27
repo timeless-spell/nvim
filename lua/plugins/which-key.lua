@@ -1,15 +1,15 @@
-MiniDeps.later (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "folke/which-key.nvim",
     })
 
-    local wk = require ("which-key")
+    local wk = require("which-key")
 
-    wk.setup ({
+    wk.setup({
         preset = "helix",
     })
 
-    wk.add ({
+    wk.add({
         { "<leader>t", group = "Telescope", icon = "󰭎" },
         { "<leader>tl", group = "LSP", icon = "" },
         { "<leader>m", group = "Mini", icon = "󰨅" },
@@ -29,7 +29,11 @@ MiniDeps.later (function ()
         { "<leader>b", group = "Buffer", icon = "󰯉" },
     })
 
-    Angju.map ("<leader>\\", function ()
-        wk.show ({ global = false })
-    end, "Which-Key: Buffer Local Keymaps")
+    Angju.map({
+        keys = "<leader>\\",
+        func = function ()
+            wk.show({ global = false })
+        end,
+        desc = "Which-Key: Buffer Local Keymaps",
+    })
 end)

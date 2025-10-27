@@ -1,28 +1,39 @@
-local map = Angju.map
+local keymaps = {
+    -- Source
+    { keys = "<leader><space>sf", func = "<cmd>source %<cr>", desc = "Source file/buffer" },
+    { keys = "<leader><space>sl", func = "<cmd>.lua<cr>", desc = "Source line" },
+    { keys = "<leader><space>sc", func = "<cmd>lua<cr>", desc = "Source current chunk", "v" },
 
--- Source
-map ("<leader><space>sf", "<cmd>source %<cr>", "Source file/buffer")
-map ("<leader><space>sl", "<cmd>.lua<cr>", "Source line")
-map ("<leader><space>sc", "<cmd>lua<cr>", "Source current chunk", "v")
+    -- Inspect
+    { keys = "<leader><space>i", func = "<cmd>Inspect<cr>", desc = "Inspect" },
 
--- Navigate buffers
-map ("<a-a>", "<cmd>bprevious<cr>", "Previous Buffer")
-map ("<a-d>", "<cmd>bnext<cr>", "Next Buffer")
+    -- Navigate buffers
+    { keys = "<a-a>", func = "<cmd>bprevious<cr>", desc = "Previous Buffer" },
+    { keys = "<a-d>", func = "<cmd>bnext<cr>", desc = "Next Buffer" },
 
--- Navigate splits
-map ("<c-h>", "<c-w><c-h>", "Move focus to the left window ")
-map ("<c-l>", "<c-w><c-l>", "Move focus to the right window ")
-map ("<c-j>", "<c-w><c-j>", "Move focus to the lower window ")
-map ("<c-k>", "<c-w><c-k>", "Move focus to the upper window ")
+    -- Navigate splits
+    { keys = "<c-h>", func = "<c-w><c-h>", desc = "Move focus to the left window " },
+    { keys = "<c-l>", func = "<c-w><c-l>", desc = "Move focus to the right window " },
+    { keys = "<c-j>", func = "<c-w><c-j>", desc = "Move focus to the lower window " },
+    { keys = "<c-k>", func = "<c-w><c-k>", desc = "Move focus to the upper window " },
 
--- Clear highlight on search
-map ("<esc>", "<cmd>nohlsearch<cr>", "Clear highlight")
+    -- Clear highlight on search
+    { keys = "<esc>", func = "<cmd>nohlsearch<cr>", desc = "Clear highlight" },
 
--- Delete current buffer
-map ("<a-x>", "<cmd>bdelete<cr>", "Delete buffer")
+    -- Delete current buffer
+    { keys = "<a-x>", func = "<cmd>bdelete<cr>", desc = "Delete buffer" },
 
--- Modify Split Size
-map ("<c-up>", "<CMD>resize -2<CR><cr>", "Resize split Up")
-map ("<c-down>", "<CMD>resize +2<CR><cr>", "Resize split Down")
-map ("<c-left>", "<CMD>vertical resize -2<cr>", "Resize split Left")
-map ("<c-right>", "<CMD>vertical resize +2<cr>", "Resize split Right")
+    -- Modify Split Size
+    { keys = "<c-up>", func = "<cmd>resize -2<CR><cr>", desc = "Resize split Up" },
+    { keys = "<c-down>", func = "<cmd>resize +2<CR><cr>", desc = "Resize split Down" },
+    { keys = "<c-left>", func = "<cmd>vertical resize -2<cr>", desc = "Resize split Left" },
+    { keys = "<c-right>", func = "<cmd>vertical resize +2<cr>", desc = "Resize split Right" },
+}
+
+Angju.multi_map(keymaps)
+
+vim.keymap.del({ "n", "v" }, "gra")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grt")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")

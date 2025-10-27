@@ -1,14 +1,18 @@
-MiniDeps.later (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "NeogitOrg/neogit",
         depends = {
             "sindrets/diffview.nvim",
         },
     })
 
-    local neogit = require ("neogit")
+    local neogit = require("neogit")
 
-    Angju.map ("<leader>gn", function ()
-        neogit.open ()
-    end, "Open [ Neogit ]")
+    Angju.map({
+        keys = "<leader>gn",
+        func = function ()
+            neogit.open()
+        end,
+        desc = "Open [ Neogit ]",
+    })
 end)

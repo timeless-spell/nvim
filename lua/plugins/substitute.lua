@@ -1,27 +1,29 @@
-MiniDeps.later (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "gbprod/substitute.nvim",
     })
 
-    local subs = require ("substitute")
+    local subs = require("substitute")
 
-    subs.setup ({
+    subs.setup({
         on_substitute = function ()
-            require ("yanky.integration").substitute ()
+            require("yanky.integration").substitute()
         end,
     })
 
-    local map = Angju.map
+    local keymaps = {
+        { keys = "<leader>so", func = subs.operator, desc = "Operator [Substitute]" },
+        { keys = "<leader>sl", func = subs.line, desc = "Operator [Substitute]" },
+        { keys = "<leader>se", func = subs.eol, desc = "End of Line [Substitute]" },
+        { keys = "<leader>sx", func = subs.visual, desc = "Visual [Substitute]", mode = "x" },
+        { keys = "<leader>sr", func = require("substitute.range").operator, desc = "Operator Range [Substitute]" },
+        { keys = "<leader>sX", func = require("substitute.range").visual, desc = "Visual Range [Substitute]", mode = "x" },
+        { keys = "<leader>sw", func = require("substitute.range").word, desc = "Word Range [Substitute]" },
+        { keys = "<leader>sR", func = require("substitute.exchange").operator, desc = "Exchange Operator [Substitute]" },
+        { keys = "<leader>sL", func = require("substitute.exchange").line, desc = "Exchange Line [Substitute]" },
+        { keys = "<leader>sv", func = require("substitute.exchange").visual, desc = "Exchange Line [Substitute]", mode = "x" },
+        { keys = "<leader>sq", func = require("substitute.exchange").cancel, desc = "Exchange Cancel [Substitute]" },
+    }
 
-    map ("<leader>so", subs.operator, "Operator [ Substitute ]")
-    map ("<leader>sl", subs.line, "Operator [ Substitute ]")
-    map ("<leader>se", subs.eol, "End of Line [ Substitute ]")
-    map ("<leader>sx", subs.visual, "Visual [Substitute]", "x")
-    map ("<leader>sr", require ("substitute.range").operator, "Operator Range [Substitute]")
-    map ("<leader>sX", require ("substitute.range").visual, "Visual Range [Substitute]", "x")
-    map ("<leader>sw", require ("substitute.range").word, "Word Range [Substitute]")
-    map ("<leader>sR", require ("substitute.exchange").operator, "Exchange Operator [Substitute]")
-    map ("<leader>sL", require ("substitute.exchange").line, "Exchange Line [Substitute]")
-    map ("<leader>sv", require ("substitute.exchange").visual, "Exchange Line [Substitute]", "x")
-    map ("<leader>sq", require ("substitute.exchange").cancel, "Exchange Cancel [Substitute]")
+    Angju.multi_map(keymaps)
 end)

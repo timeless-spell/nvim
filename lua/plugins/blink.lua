@@ -1,5 +1,5 @@
-MiniDeps.now (function ()
-    MiniDeps.add ({
+MiniDeps.later(function ()
+    MiniDeps.add({
         source = "saghen/blink.cmp",
         depends = {
             "MahanRahmati/blink-nerdfont.nvim",
@@ -11,10 +11,10 @@ MiniDeps.now (function ()
     })
 
     ---@type blink.cmp.Config
-    local config = {
-        -- cmdline = {
-        --     enabled = true,
-        -- },
+    local blink_config = {
+        cmdline = {
+            enabled = true,
+        },
         completion = {
             list = {
                 selection = {
@@ -40,7 +40,7 @@ MiniDeps.now (function ()
                             text = function (ctx)
                                 local icon = ctx.kind_icon
                                 if ctx.item.source_name == "LSP" then
-                                    local color_item = require ("nvim-highlight-colors").format (ctx.item.documentation, { kind = ctx.kind })
+                                    local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
                                     if color_item and color_item.abbr ~= "" then
                                         icon = color_item.abbr
                                     end
@@ -50,7 +50,7 @@ MiniDeps.now (function ()
                             highlight = function (ctx)
                                 local highlight = "BlinkCmpKind" .. ctx.kind
                                 if ctx.item.source_name == "LSP" then
-                                    local color_item = require ("nvim-highlight-colors").format (ctx.item.documentation, { kind = ctx.kind })
+                                    local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
                                     if color_item and color_item.abbr_hl_group then
                                         highlight = color_item.abbr_hl_group
                                     end
@@ -99,24 +99,16 @@ MiniDeps.now (function ()
                 window = { border = "solid" },
             },
         },
-        -- keymap = { preset = 'default' },
+        keymap = { preset = "default" },
         appearance = {
             nerd_font_variant = "mono",
         },
         sources = {
-            default = {
-                "lsp",
-                "path",
-                "snippets",
-                "buffer",
-                "nerdfont",
-                "emoji",
-                "lazydev",
-            },
+            default = { "lsp", "path", "snippets", "buffer", "nerdfont", "emoji", "lazydev" },
             providers = {
                 cmdline = {
                     enabled = function ()
-                        return vim.fn.getcmdline ():sub (1, 1) ~= "!"
+                        return vim.fn.getcmdline():sub(1, 1) ~= "!"
                     end,
                 },
                 nerdfont = {
@@ -135,16 +127,15 @@ MiniDeps.now (function ()
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
-                    -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
                 },
             },
         },
     }
 
-    require ("blink.cmp").setup (config)
+    require("blink.cmp").setup(blink_config)
 
-    require ("lazydev").setup ({
+    require("lazydev").setup({
         library = {
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
             "grim.nvim",
