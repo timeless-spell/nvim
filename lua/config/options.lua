@@ -18,7 +18,8 @@ vim.o.inccommand = "split"
 vim.o.breakindent = true
 vim.o.backup = false
 vim.o.showmode = false
-vim.o.cursorline = true
+vim.o.cursorline = false
+vim.o.cursorcolumn = false
 vim.o.scrolloff = 5
 vim.o.wrap = false
 
