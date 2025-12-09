@@ -70,6 +70,9 @@ local setup = {
         "lsp",
         "diagnostics",
     },
+    colorschemes = {
+        "tokyonight",
+    },
     plugins = {
         "grim",
         "lib",
@@ -101,6 +104,8 @@ local setup = {
         "bqf",
         "resession",
         "cubes",
+        "jdtls",
+        "dap",
     },
     autocmds = {
         "highlight",
@@ -109,5 +114,6 @@ local setup = {
 }
 
 Angju.req("config", setup.config)
+Angju.req("colorschemes", setup.colorschemes)
 Angju.req("autocmds", setup.autocmds)
 Angju.req("plugins", setup.plugins)
