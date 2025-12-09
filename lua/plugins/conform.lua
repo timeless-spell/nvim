@@ -12,6 +12,8 @@ MiniDeps.later(function ()
             typescript = { "biome", "denofmt", stop_after_first = true },
         },
         format_after_save = {
+            lsp_format = "fallback",
+            async = true,
             timeout_ms = 500,
         },
     })
