@@ -1,1 +1,1 @@
-## Base Neovim setup  (WIP)
+## Base Neovim setup  
