@@ -84,6 +84,9 @@ local setup = {
 		-- https://github.com/scottmckendry/cyberdream.nvim
 		'cyberdream',
 
+		-- https://github.com/sschleemilch/slimline.nvim
+		'slimline',
+
 		-- Local project
 		'grim',
 
