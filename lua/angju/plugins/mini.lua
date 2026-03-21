@@ -216,3 +216,37 @@ later(function ()
 		},
 	}
 end)
+
+later(function ()
+	local hipatterns = require 'mini.hipatterns'
+
+	-- TO-DO
+	-- TODO
+
+	hipatterns.setup {
+		highlighters = {
+			todo = { pattern = '%f[%w]()TO%p-DO()%f[%W]', group = 'MiniHipatternsTodo' },
+			hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+			fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+			note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+		},
+	}
+end)
+
+later(function ()
+	---@type angju.Keymap[]
+	local keymaps = {
+		{
+			keys = '<Leader><Space>ca',
+			func = '<CMD>colorscheme miniautumn<CR>',
+			desc = 'Colorscheme: MiniAutumn',
+		},
+		{
+			keys = '<Leader><Space>cu',
+			func = '<CMD>colorscheme minisummer<CR>',
+			desc = 'Colorscheme: MiniSummer',
+		},
+	}
+
+	Angju.multi_set_keymap(keymaps)
+end)
