@@ -136,17 +136,14 @@ local setup = {
 		-- https://github.com/mfussenegger/nvim-lint
 		'lint',
 
-		-- https://github.com/folke/todo-comments.nvim
-		'todo-comments',
-
 		-- https://github.com/gbprod/yanky.nvim
 		'yanky',
 
 		-- https://github.com/gbprod/substitute.nvim
 		'substitute',
 
-		-- https://github.com/folke/flash.nvim
-		'flash',
+		-- https://codeberg.org/andyg/leap.nvim
+		'leap',
 
 		-- https://github.com/brenoprata10/nvim-highlight-colors
 		'highlight-colors',
