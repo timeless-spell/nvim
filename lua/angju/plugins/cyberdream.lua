@@ -8,5 +8,5 @@ MiniDeps.now(function ()
 		italic_comments = true,
 	}
 
-	Angju.set_keymap('<Leader><Space>c', '<CMD>colorscheme cyberdream<CR>', 'Colorscheme: Cyberdream')
+	Angju.set_keymap('<Leader><Space>cc', '<CMD>colorscheme cyberdream<CR>', 'Colorscheme: Cyberdream')
 end)
