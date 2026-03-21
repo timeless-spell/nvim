@@ -11,6 +11,9 @@ now(function ()
 			},
 			winblend = 20,
 		},
+		lsp_progress = {
+			enable = false,
+		},
 	}
 end)
 
