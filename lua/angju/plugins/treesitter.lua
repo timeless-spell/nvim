@@ -12,7 +12,9 @@ MiniDeps.now(function ()
 		},
 	}
 
-	require('nvim-treesitter').install {
+	local treesitter = require 'nvim-treesitter'
+
+	local languages = {
 		'bash',
 		'fish',
 		'c',
@@ -25,25 +27,21 @@ MiniDeps.now(function ()
 		'query',
 		'vim',
 		'vimdoc',
+		'yaml',
+		'toml',
+		'javascript',
+		'typescript',
+		'jsx',
+		'tsx',
+		'java',
 	}
+
+	treesitter.install(languages)
+	treesitter.update(languages)
 
 	vim.api.nvim_create_autocmd('FileType', {
 		group = vim.api.nvim_create_augroup('nvim-treesitter', { clear = true }),
-		pattern = {
-			'c',
-			'lua',
-			'bash',
-			'markdown',
-			'fish',
-			'vim',
-			'yaml',
-			'toml',
-			'javascript',
-			'typescript',
-			'javascriptreact',
-			'typescriptreact',
-			'java',
-		},
+		pattern = languages,
 		callback = function ()
 			-- syntax highlighting, provided by Neovim
 			vim.treesitter.start()
