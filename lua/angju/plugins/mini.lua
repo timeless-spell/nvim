@@ -18,20 +18,6 @@ now(function ()
 end)
 
 --
--- MiniIcons:
---
--- now (function ()
---   require ('mini.icons').setup ()
--- end)
-
---
--- MiniStatus:
---
--- now(function ()
--- 	require('mini.statusline').setup()
--- end)
-
---
 -- MiniFiles:
 --
 later(function ()
@@ -70,8 +56,8 @@ end)
 --
 later(function ()
 	require('mini.pick').setup()
-	Angju.set_keymap('<leader>msf', '<cmd>lua MiniPick.builtin.files()<cr>', 'Files [MiniPick]')
-	Angju.set_keymap('<leader>msb', '<cmd>lua MiniPick.builtin.buffers()<cr>', 'Buffers [MiniPick]')
+	Angju.set_keymap('<leader>msf', '<CMD>lua MiniPick.builtin.files()<CR>', 'Files [MiniPick]')
+	Angju.set_keymap('<leader>msb', '<CMD>lua MiniPick.builtin.buffers()<CR>', 'Buffers [MiniPick]')
 end)
 
 --
@@ -211,13 +197,15 @@ later(function ()
 		},
 		clues = {
 			{ mode = 'n', keys = '<Leader><Space>', desc = ' +User' },
+			{ mode = 'n', keys = '<Leader><Space>c', desc = ' +User/Colorscheme' },
+			{ mode = 'n', keys = '<Leader><Space>s', desc = ' +User/Source' },
 			{ mode = 'n', keys = '<Leader>f', desc = ' +Fzf' },
+			{ mode = 'n', keys = '<Leader>fl', desc = ' +Fzf/LSP' },
 			{ mode = 'n', keys = '<Leader>t', desc = ' +Telescope' },
 			{ mode = 'n', keys = '<Leader>m', desc = '󰮋 +Mini' },
-			{ mode = 'n', keys = '<Leader>ms', desc = '󰮋 +Picker' },
-			{ mode = 'n', keys = '\\f', desc = '󰈑 +FFF' },
+			{ mode = 'n', keys = '<Leader>ms', desc = '󰮋 +Mini/Picker' },
 			{ mode = { 'n', 'x' }, keys = '<Leader>l', desc = ' +LSP' },
-			{ mode = 'n', keys = '<Leader>lg', desc = ' +LSP' },
+			{ mode = 'n', keys = '<Leader>lg', desc = ' +LSP/Go to' },
 			{ mode = 'n', keys = '<Leader>d', desc = ' +Diagnostics' },
 			{ mode = 'n', keys = '<Leader>g', desc = ' +Git' },
 			{ mode = 'n', keys = '<Leader>r', desc = ' +Resession' },
