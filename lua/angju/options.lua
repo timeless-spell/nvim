@@ -1,49 +1,52 @@
--- General ====================================================================
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- Globals
+local g = vim.g
+g.mapleader = ' '
+g.maplocalleader = ' '
 
-vim.o.mouse = 'a'
-vim.o.mousescroll = 'ver:25,hor:6'
-vim.o.undofile = true
-vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
-vim.o.updatetime = 250
+g.loaded_python3_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_node_provider = 0
 
--- UI =========================================================================
-vim.o.breakindent = true
-vim.o.colorcolumn = '+1'
-vim.o.cursorline = true
-vim.o.list = true
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.ruler = false
-vim.o.signcolumn = 'yes'
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.inccommand = 'split'
-vim.o.backup = false
-vim.o.showmode = false
-vim.o.scrolloff = 5
-vim.o.wrap = false
-vim.o.termguicolors = true
+-- General
+local o = vim.o
+local opt = vim.opt
 
-vim.opt.listchars = { eol = '󱞥', tab = '| ' }
+o.mouse = 'a'
+o.mousescroll = 'ver:25,hor:6'
+o.undofile = true
+o.shada = "'100,<50,s10,:1000,/100,@100,h"
+o.updatetime = 250
 
--- Editing ====================================================================
-vim.o.autoindent = true
-vim.o.expandtab = true
-vim.o.formatoptions = 'rqnl1j'
-vim.o.ignorecase = true
-vim.o.incsearch = true
-vim.o.infercase = true
-vim.o.shiftwidth = 2
-vim.o.smartcase = true
-vim.o.smartindent = true
-vim.o.spelloptions = 'camel'
-vim.o.tabstop = 2
-vim.o.virtualedit = 'block'
+-- UI
+o.breakindent = true
+o.cursorline = true
+o.number = true
+o.relativenumber = true
+o.ruler = false
+o.signcolumn = 'yes'
+o.splitbelow = true
+o.splitright = true
+o.inccommand = 'split'
+o.backup = false
+o.showmode = false
+o.scrolloff = 5
+o.wrap = false
+o.termguicolors = true
 
--- Disable ====================================================================
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
+o.list = true
+opt.listchars = { eol = '󱞥', tab = '| ' }
+
+-- Editing
+o.autoread = true
+o.autoindent = true
+o.expandtab = true
+o.ignorecase = true
+o.incsearch = true
+o.infercase = true
+o.shiftwidth = 2
+o.smartcase = true
+o.smartindent = true
+o.spelloptions = 'camel'
+o.tabstop = 2
+o.virtualedit = 'block'
