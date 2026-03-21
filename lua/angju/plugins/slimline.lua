@@ -1,5 +1,6 @@
 MiniDeps.now(function ()
 	MiniDeps.add 'sschleemilch/slimline.nvim'
+
 	require('slimline').setup {
 		spaces = {
 			components = '─',
@@ -7,4 +8,10 @@ MiniDeps.now(function ()
 			right = '─',
 		},
 	}
+
+	vim.opt.fillchars = {
+		stl = '─',
+	}
+
+	vim.o.laststatus = 3
 end)
