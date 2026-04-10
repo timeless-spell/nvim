@@ -1,0 +1,12 @@
+{
+    "New Module": {
+        "prefix": "mod",
+        "body": [
+            "local ${1} = {}",
+            "",
+            "${0}",
+            "",
+            "return ${3}"
+        ]
+    }
+}

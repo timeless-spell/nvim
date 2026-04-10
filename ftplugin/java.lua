@@ -191,7 +191,7 @@ config['on_attach'] = function (client, bufnr)
 			buffer = bufnr,
 		},
 	}
-	Angju.multi_set_keymap(keymaps)
+	Angju.set_table_keymap(keymaps)
 end
 
 jdtls.start_or_attach(config)
