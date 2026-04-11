@@ -53,10 +53,6 @@ o.spelloptions = 'camel'
 o.tabstop = 2
 o.virtualedit = 'block'
 
--- mini.nvim =================================================================
-
-vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
-
 -- Custom globals. ===========================================================
 
 local Angju = {}
@@ -110,9 +106,11 @@ function Angju.del_table_keymap (keymap_table)
 	end
 end
 
-local misc = require 'mini.misc'
+-- mini.nvim =================================================================
 
-misc.setup()
+vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+
+local misc = require 'mini.misc'
 
 ---@param f function
 function Angju.now (f)
