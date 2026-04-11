@@ -86,7 +86,7 @@ Angju.later(function ()
 		group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
 		callback = function (event)
 			---@type angju.keymap.Set[]
-			local keymaps = {
+			local lsp_keymaps = {
 				{
 					keys = '<leader>lgd',
 					func = vim.lsp.buf.definition,
@@ -149,7 +149,7 @@ Angju.later(function ()
 				},
 			}
 
-			Angju.set_table_keymap(keymaps)
+			Angju.set_table_keymap(lsp_keymaps)
 
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			if client and client:supports_method('textDocument/documentHighlight', event.buf) then
