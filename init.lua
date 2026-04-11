@@ -106,7 +106,8 @@ function Angju.del_table_keymap (keymap_table)
 	end
 end
 
--- mini.nvim =================================================================
+-- mini.misc
+-- https://github.com/nvim-mini/MiniMax/blob/main/configs/nvim-0.12/init.lua
 
 vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
 
@@ -163,13 +164,23 @@ end
 
 -- Autocmds ========================================================
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight when yanking (copying) text',
-	group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-	callback = function ()
-		vim.hl.on_yank()
-	end,
-})
+-- Highlight text on yank (copy text)
+local function hl_on_yank ()
+	vim.hl.on_yank()
+end
+
+Angju.new_autocmd('TextYankPost', {}, hl_on_yank, 'Highlight when yanking (copying) text')
+
+-- Build telescope-fzf-native.nvim
+local function build_fzf_native (event)
+	local name, kind = event.data.spec.name, event.data.kind
+
+	if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+		vim.system({ 'make' }, { cwd = event.data.path })
+	end
+end
+
+Angju.new_autocmd('PackChanged', {}, build_fzf_native, 'Build FZF Native')
 
 -- Diagnostics =====================================================
 

@@ -1,14 +1,4 @@
 Angju.later(function ()
-	local function build_fzf_native (event)
-		local name, kind = event.data.spec.name, event.data.kind
-
-		if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
-			vim.system({ 'make' }, { cwd = event.data.path })
-		end
-	end
-
-	Angju.new_autocmd('PackChanged', { 'install', 'update' }, build_fzf_native, 'Build FZF Native')
-
 	vim.pack.add {
 		'https://github.com/nvim-telescope/telescope.nvim',
 		'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
