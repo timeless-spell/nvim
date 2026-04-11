@@ -1,15 +1,13 @@
 Angju.later(function ()
-	vim.api.nvim_create_autocmd('PackChanged', {
-		group = vim.api.nvim_create_augroup('hook-telescope', { clear = true }),
-		desc = 'Build FZF Native',
-		callback = function (event)
-			local name, kind = event.data.spec.name, event.data.kind
+	local function build_fzf_native (event)
+		local name, kind = event.data.spec.name, event.data.kind
 
-			if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
-				vim.system({ 'make' }, { cwd = event.data.path })
-			end
-		end,
-	})
+		if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+			vim.system({ 'make' }, { cwd = event.data.path })
+		end
+	end
+
+	Angju.new_autocmd('PackChanged', { 'install', 'update' }, build_fzf_native, 'Build FZF Native')
 
 	vim.pack.add {
 		'https://github.com/nvim-telescope/telescope.nvim',
