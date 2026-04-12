@@ -6,8 +6,8 @@ Angju.later(function ()
 			lua = { 'stylua' },
 			html = { 'biome' },
 			css = { 'biome' },
-			javascript = { 'biome', 'denofmt', stop_after_first = true },
-			typescript = { 'biome', 'denofmt', stop_after_first = true },
+			javascript = { 'biome', 'deno_fmt', stop_after_first = true },
+			typescript = { 'biome', 'deno_fmt', stop_after_first = true },
 		},
 		format_after_save = {
 			lsp_format = 'fallback',
