@@ -171,17 +171,6 @@ end
 
 Angju.new_autocmd('TextYankPost', {}, hl_on_yank, 'Highlight when yanking (copying) text')
 
--- Build telescope-fzf-native.nvim
-local function build_fzf_native (event)
-	local name, kind = event.data.spec.name, event.data.kind
-
-	if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
-		vim.system({ 'make' }, { cwd = event.data.path })
-	end
-end
-
-Angju.new_autocmd('PackChanged', {}, build_fzf_native, 'Build FZF Native')
-
 -- Diagnostics =====================================================
 
 Angju.later(function ()
