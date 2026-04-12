@@ -94,6 +94,16 @@ function Angju.set_table_keymap (keymap_table)
 	end
 end
 
+---@param plugin string
+---@param version? string
+---@param name? string
+function Angju.gh_add (plugin, version, name)
+	local gh = 'https://github.com/' .. plugin
+	local specs = { src = gh, version = version, name = name }
+
+	vim.pack.add { specs }
+end
+
 ---@class angju.keymap.Del
 ---@field keys string
 ---@field buffer? number
@@ -109,7 +119,7 @@ end
 -- mini.misc
 -- https://github.com/nvim-mini/MiniMax/blob/main/configs/nvim-0.12/init.lua
 
-vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+Angju.gh_add 'nvim-mini/mini.nvim'
 
 local misc = require 'mini.misc'
 
