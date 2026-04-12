@@ -6,6 +6,8 @@ Angju.later(function ()
 	lint.linters_by_ft = {
 		lua = { 'selene' },
 		fish = { 'fish' },
+		css = { 'biomejs' },
+		json = { 'biomejs' },
 	}
 
 	vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
