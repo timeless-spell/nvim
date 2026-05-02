@@ -18,7 +18,7 @@ Angju.later(function ()
 	-- Language Settings
 	-- ===========================================================================
 
-	-- Typescript and Javascript  (denols, ts_ls)
+	-- TypeScript and JavaScript (denols, ts_ls)
 	-- https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
 	local typescript_settings = {
 		['implicitProjectCOnfiguration.target'] = 'es2024',
@@ -44,6 +44,16 @@ Angju.later(function ()
 	---@type table<string, vim.lsp.Config>
 	local servers = {
 		['*'] = {},
+		harper_ls = {
+			settings = {
+				['harper-ls'] = {
+					linters = {
+						SentenceCapitalization = false,
+						SpellCheck = false,
+					},
+				},
+			},
+		},
 		lua_ls = {
 			settings = {
 				Lua = {
@@ -66,18 +76,10 @@ Angju.later(function ()
 				javascript = typescript_settings,
 			},
 		},
-		biome = {},
+		html = {},
+		cssls = {},
+		jsonls = {},
 		taplo = {},
-		harper_ls = {
-			settings = {
-				['harper-ls'] = {
-					linters = {
-						SentenceCapitalization = false,
-						SpellCheck = false,
-					},
-				},
-			},
-		},
 	}
 
 	vim.lsp.enable(enabled_servers(servers))
@@ -178,9 +180,13 @@ Angju.later(function ()
 			end
 
 			if client and client:supports_method('textDocument/inlayHint', event.buf) then
-				Angju.set_keymap('<leader>lH', function ()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-				end, 'Toggle Inlay Hints')
+				Angju.set_keymap(
+					'<leader>lH',
+					function ()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+					end,
+					'Toggle Inlay Hints'
+				)
 			end
 		end,
 	})
