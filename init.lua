@@ -5,6 +5,7 @@
 -- Options. ==================================================================
 
 local g = vim.g
+
 g.mapleader = ' '
 g.maplocalleader = ' '
 
@@ -59,6 +60,8 @@ local Angju = {}
 
 _G.Angju = Angju
 
+Angju.pack = require 'pack'
+
 ---@param keys string
 ---@param func string|function
 ---@param desc? string
@@ -70,9 +73,7 @@ end
 ---@param keys string
 ---@param buf? number
 ---@param mode? string|string[]
-function Angju.del_keymap (keys, buf, mode)
-	vim.keymap.del(mode or 'n', keys, { buffer = buf })
-end
+function Angju.del_keymap (keys, buf, mode) vim.keymap.del(mode or 'n', keys, { buffer = buf }) end
 
 ---@class angju.keymap.Set : vim.keymap.set.Opts
 ---@field keys string
@@ -124,28 +125,20 @@ Angju.gh_add 'nvim-mini/mini.nvim'
 local misc = require 'mini.misc'
 
 ---@param f function
-function Angju.now (f)
-	misc.safely('now', f)
-end
+function Angju.now (f) misc.safely('now', f) end
 
 ---@param f function
-function Angju.later (f)
-	misc.safely('later', f)
-end
+function Angju.later (f) misc.safely('later', f) end
 
 Angju.now_if_args = vim.fn.argc(-1) > 0 and Angju.now or Angju.later
 
 ---@param ev vim.api.keyset.events
 ---@param f function
-function Angju.on_event (ev, f)
-	misc.safely('event:' .. ev, f)
-end
+function Angju.on_event (ev, f) misc.safely('event:' .. ev, f) end
 
 ---@param ft string
 ---@param f function
-function Angju.on_filetype (ft, f)
-	misc.safely('filetype:' .. ft, f)
-end
+function Angju.on_filetype (ft, f) misc.safely('filetype:' .. ft, f) end
 
 local gr = vim.api.nvim_create_augroup('custom-config', {})
 
@@ -175,9 +168,7 @@ end
 -- Autocmds ========================================================
 
 -- Highlight text on yank (copy text)
-local function hl_on_yank ()
-	vim.hl.on_yank()
-end
+local function hl_on_yank () vim.hl.on_yank() end
 
 Angju.new_autocmd('TextYankPost', {}, hl_on_yank, 'Highlight when yanking (copying) text')
 
