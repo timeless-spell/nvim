@@ -298,5 +298,26 @@ Angju.set_table_keymap(keymaps)
 Angju.del_table_keymap(unmap)
 
 -- User Commands =========================================================
+local function pack_plugin_completion (ArgLead, CmdLine, CursorPos)
+	local plugins = vim.pack.get()
+	local names = {}
+	for _, plugin in ipairs(plugins) do
+		table.insert(names, plugin.spec.name)
+	end
+	return names
+end
 
--- local c_cmd = vim.api.nvim_create_user_command
+---@param opts vim.api.keyset.create_user_command.command_args
+local function pack_update (opts)
+	if opts.args == '' then
+		vim.pack.update()
+	else
+		vim.pack.update { opts.args }
+	end
+end
+
+vim.api.nvim_create_user_command(
+	'VimPackUp',
+	pack_update,
+	{ desc = 'Update plugins [vim.pack]', nargs = '*', complete = pack_plugin_completion }
+)
