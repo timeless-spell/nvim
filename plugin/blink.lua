@@ -10,7 +10,7 @@ Angju.later(function ()
 	---@type blink.cmp.Config
 	local blink_config = {
 		cmdline = {
-			enabled = true,
+			enabled = false,
 		},
 		completion = {
 			list = {
