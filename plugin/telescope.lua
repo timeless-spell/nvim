@@ -81,7 +81,7 @@ Angju.later(function ()
 	---@type angju.keymap.Set
 	local telescope_keymaps = {
 		{
-			keys = '<leader>tf',
+			keys = '<leader>sf',
 			func = function ()
 				builtin.find_files {
 					hidden = true,
@@ -91,7 +91,7 @@ Angju.later(function ()
 			desc = 'Search [F]iles',
 		},
 		{
-			keys = '<leader>tc',
+			keys = '<leader>sc',
 			func = function ()
 				builtin.find_files {
 					cwd = utils.buffer_dir(),
@@ -102,7 +102,7 @@ Angju.later(function ()
 			desc = 'Search Files ([c]urrent buffer)',
 		},
 		{
-			keys = '<leader>to',
+			keys = '<leader>so',
 			func = function ()
 				builtin.oldfiles {
 					previewer = false,
@@ -113,7 +113,7 @@ Angju.later(function ()
 			desc = 'Search [O]ld Files',
 		},
 		{
-			keys = '<leader>tg',
+			keys = '<leader>sg',
 			func = function ()
 				builtin.live_grep {
 					layout_strategy = 'vertical',
@@ -127,7 +127,7 @@ Angju.later(function ()
 			desc = 'Search by [G]rep',
 		},
 		{
-			keys = '<leader>tg',
+			keys = '<leader>sg',
 			func = function ()
 				builtin.live_grep {
 					layout_strategy = 'vertical',
@@ -141,7 +141,7 @@ Angju.later(function ()
 			desc = 'Search by [G]rep',
 		},
 		{
-			keys = '<leader>tw',
+			keys = '<leader>sw',
 			func = function ()
 				builtin.grep_string {
 					layout_strategy = 'vertical',
@@ -155,7 +155,7 @@ Angju.later(function ()
 			desc = 'Search current [W]ord',
 		},
 		{
-			keys = '<leader>t/',
+			keys = '<leader>s/',
 			func = function ()
 				builtin.current_buffer_fuzzy_find {
 					layout_strategy = 'center',
@@ -167,7 +167,7 @@ Angju.later(function ()
 			desc = '[/] Fuzzily search in current buffer',
 		},
 		{
-			keys = '<leader>tq',
+			keys = '<leader>sq',
 			func = function ()
 				builtin.quickfix {
 					layout_strategy = 'center',
@@ -179,7 +179,7 @@ Angju.later(function ()
 			desc = '[Q]uiqfix',
 		},
 		{
-			keys = '<leader>t<leader>',
+			keys = '<leader>s<leader>',
 			func = function ()
 				builtin.buffers {
 					previewer = false,
@@ -190,7 +190,7 @@ Angju.later(function ()
 			desc = 'Search Open Buffers',
 		},
 		{
-			keys = '<leader>th',
+			keys = '<leader>sh',
 			func = function ()
 				builtin.help_tags {
 					layout_strategy = 'bottom_pane',
@@ -204,7 +204,7 @@ Angju.later(function ()
 			desc = 'Search [H]elp',
 		},
 		{
-			keys = '<leader>tn',
+			keys = '<leader>sn',
 			func = function ()
 				builtin.find_files {
 					cwd = vim.fn.stdpath 'config',
@@ -216,7 +216,7 @@ Angju.later(function ()
 			desc = 'Search [N]eovim Files',
 		},
 		{
-			keys = '<leader>tk',
+			keys = '<leader>sk',
 			func = function ()
 				builtin.keymaps {
 					layout_strategy = 'center',
@@ -226,7 +226,7 @@ Angju.later(function ()
 			desc = '[S]earch [K]eymaps',
 		},
 		{
-			keys = '<leader>tb',
+			keys = '<leader>sb',
 			func = function ()
 				telescope.extensions.file_browser.file_browser {
 					cwd = vim.fn.expand '%:p:h',
@@ -250,7 +250,7 @@ Angju.later(function ()
 			desc = 'File [B]rowser',
 		},
 		{
-			keys = '<leader>tz',
+			keys = '<leader>sz',
 			func = function ()
 				require('telescope').extensions.zoxide.list {
 					layout_config = { width = 0.9, height = 0.7, preview_width = 0.5 },
