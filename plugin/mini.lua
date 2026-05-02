@@ -3,19 +3,21 @@ local now, ltr = Angju.now, Angju.later
 --
 -- MiniNotify:
 --
-ltr(function ()
-	require('mini.notify').setup {
-		window = {
-			config = {
-				border = 'solid',
+ltr(
+	function ()
+		require('mini.notify').setup {
+			window = {
+				config = {
+					border = 'solid',
+				},
+				winblend = 20,
 			},
-			winblend = 20,
-		},
-		lsp_progress = {
-			enable = false,
-		},
-	}
-end)
+			lsp_progress = {
+				enable = false,
+			},
+		}
+	end
+)
 
 --
 -- MiniFiles:
@@ -33,16 +35,12 @@ end)
 --
 -- MiniPairs:
 --
-ltr(function ()
-	require('mini.pairs').setup()
-end)
+ltr(function () require('mini.pairs').setup() end)
 
 --
 -- MiniExtra
 --
-ltr(function ()
-	require('mini.extra').setup()
-end)
+ltr(function () require('mini.extra').setup() end)
 
 --
 -- MiniPick:
@@ -79,50 +77,44 @@ end)
 --
 -- MiniComment:
 --
-ltr(function ()
-	require('mini.comment').setup()
-end)
+ltr(function () require('mini.comment').setup() end)
 
 --
 -- MiniCursorword:
 --
-ltr(function ()
-	require('mini.cursorword').setup()
-end)
+ltr(function () require('mini.cursorword').setup() end)
 
 --
 -- MiniMove:
 --
-ltr(function ()
-	require('mini.move').setup()
-end)
+ltr(function () require('mini.move').setup() end)
 
 --
 -- MiniSurround:
 --
-ltr(function ()
-	require('mini.surround').setup {
-		mappings = {
-			add = 'msa',
-			delete = 'msd',
-			find = 'msf',
-			find_left = 'msF',
-			highlight = 'msh',
-			replace = 'msr',
-			update_n_lines = 'msn',
+ltr(
+	function ()
+		require('mini.surround').setup {
+			mappings = {
+				add = 'msa',
+				delete = 'msd',
+				find = 'msf',
+				find_left = 'msF',
+				highlight = 'msh',
+				replace = 'msr',
+				update_n_lines = 'msn',
 
-			suffix_last = 'l',
-			suffix_next = 'n',
-		},
-	}
-end)
+				suffix_last = 'l',
+				suffix_next = 'n',
+			},
+		}
+	end
+)
 
 --
 -- MiniGit
 --
-ltr(function ()
-	require('mini.git').setup()
-end)
+ltr(function () require('mini.git').setup() end)
 
 --
 -- MiniBufremove
@@ -130,9 +122,7 @@ end)
 ltr(function ()
 	local bufremove = require 'mini.bufremove'
 	bufremove.setup()
-	Angju.set_keymap('<a-x>', function ()
-		bufremove.delete()
-	end, 'Delete buffer')
+	Angju.set_keymap('<a-x>', function () bufremove.delete() end, 'Delete buffer')
 end)
 
 --
@@ -157,7 +147,7 @@ ltr(function ()
 			{ mode = 'n', keys = '<Leader><Space>s', desc = ' +User/Source' },
 			{ mode = 'n', keys = '<Leader>f', desc = ' +Fzf' },
 			{ mode = 'n', keys = '<Leader>fl', desc = ' +Fzf/LSP' },
-			{ mode = 'n', keys = '<Leader>t', desc = ' +Telescope' },
+			{ mode = 'n', keys = '<Leader>s', desc = ' +Telescope' },
 			{ mode = 'n', keys = '<Leader>m', desc = '󰮋 +Mini' },
 			{ mode = 'n', keys = '<Leader>ms', desc = '󰮋 +Mini/Picker' },
 			{ mode = { 'n', 'x' }, keys = '<Leader>l', desc = ' +LSP' },
