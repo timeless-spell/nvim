@@ -21,7 +21,7 @@ Angju.later(function ()
 	local clever = require('leap.user').with_traversal_keys
 	local clever_f, clever_t = clever('f', 'F'), clever('t', 'T')
 
-	---@type angju.Keymap[]
+	---@type angju.keymap.Set[]
 	local keymaps = {
 		{
 			mode = { 'n', 'x', 'o' },
