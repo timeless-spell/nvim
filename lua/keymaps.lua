@@ -30,6 +30,10 @@ local keymaps = {
 	{ keys = '<C-down>', func = '<CMD>resize +2<CR><CR>', desc = 'Resize split Down' },
 	{ keys = '<C-left>', func = '<CMD>vertical resize -2<CR>', desc = 'Resize split Left' },
 	{ keys = '<C-right>', func = '<CMD>vertical resize +2<CR>', desc = 'Resize split Right' },
+
+	-- Yank and put + (system) clipboard
+	{ keys = '<Leader><Space>y', func = '"+y', desc = 'Yank to + clipboard' },
+	{ keys = '<Leader><Space>p', func = '"+p', desc = 'Put from + clipboard' },
 }
 
 Ang.tbl_map (keymaps)
