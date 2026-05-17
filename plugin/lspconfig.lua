@@ -54,6 +54,16 @@ end
 local servers = {
 	['*'] = {},
 	lua_ls = {},
+	harper_ls = {
+		settings = {
+			['harper-ls'] = {
+				linters = {
+					SentenceCapitalization = false,
+					SpellCheck = false,
+				},
+			},
+		},
+	},
 }
 
 vim.lsp.enable (enabled_servers (servers))
