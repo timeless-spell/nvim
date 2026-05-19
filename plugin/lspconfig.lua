@@ -64,6 +64,7 @@ local servers = {
 			},
 		},
 	},
+	taplo = {},
 }
 
 vim.lsp.enable (enabled_servers (servers))
