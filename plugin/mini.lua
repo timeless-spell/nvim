@@ -3,9 +3,10 @@ Ang.pack_add  'nvim-mini/mini.nvim'
 -- ==============================
 -- MiniFiles
 -- ==============================
-require ('mini.files').setup ()
+local files = require  'mini.files'
+files.setup ()
 
-Ang.map ('<Leader>mf', '<CMD>lua MiniFiles.open()<CR>', 'Open [MiniFiles]')
+Ang.map ('<Leader>mf', files.open, 'Open [MiniFiles]')
 
 -- ==============================
 -- MiniIcons
@@ -53,9 +54,10 @@ require ('mini.move').setup ()
 -- ==============================
 -- MiniBufremove
 -- ==============================
-require ('mini.bufremove').setup ()
+local bufremove = require  'mini.bufremove'
+bufremove.setup ()
 
-Ang.map ('<M-x>', MiniBufremove.delete, 'Delete buffer [MiniBufremove]')
+Ang.map ('<M-x>', bufremove.delete, 'Delete buffer [MiniBufremove]')
 
 -- ==============================
 -- MiniHipatterns
