@@ -1,0 +1,4 @@
+std = 'neovim'
+
+multiple_statement = 'allow'
+mixed_tables = 'allow'
