@@ -1,8 +1,8 @@
-Ang.pack_add 'stevearc/conform.nvim'
+Ang.pack_add  'stevearc/conform.nvim'
 
-local conform = require 'conform'
+local conform = require  'conform'
 
-conform.setup {
+conform.setup  {
 	default_format_opts = {
 		lsp_format = 'fallback',
 	},
@@ -15,4 +15,4 @@ conform.setup {
 	},
 }
 
-Ang.map('<Leader>bf', function () conform.format { async = true } end, 'Format buffer [Conform]')
+Ang.map ('<Leader><Space>f', function() conform.format  { async = true } end, 'Format buffer [Conform]')
