@@ -1,4 +1,7 @@
 Ang.pack_add  'neovim/nvim-lspconfig'
+Ang.pack_add  'chrisgrieser/nvim-lsp-endhints'
+
+require ('lsp-endhints').setup ()
 
 vim.api.nvim_create_autocmd ('LspAttach', {
 	group = vim.api.nvim_create_augroup ('lsp-attach', { clear = true }),
@@ -65,6 +68,7 @@ local servers = {
 		},
 	},
 	taplo = {},
+	rust_analyzer = {},
 }
 
 vim.lsp.enable (enabled_servers (servers))
