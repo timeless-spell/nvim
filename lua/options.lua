@@ -6,13 +6,14 @@ g.maplocalleader = ' '
 g.mapleader = ' '
 
 o.mouse = 'a'
-o.mousescroll = 'ver:25,hor:6'
+o.mousescroll = 'ver:5,hor:5'
 o.undofile = true
 o.shada = "'100,<50,s10,:1000,/100,@100,h"
 o.updatetime = 250
 o.breakindent = true
 o.cursorline = true
 o.number = true
+o.numberwidth = 5
 o.relativenumber = true
 o.ruler = false
 o.signcolumn = 'yes'
