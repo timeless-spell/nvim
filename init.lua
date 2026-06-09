@@ -10,9 +10,11 @@ require  'diagnostic'
 local new_autocmd = vim.api.nvim_create_autocmd
 
 new_autocmd ('VimEnter', { command = 'colorscheme cyberdream', desc = 'Set colorscheme' })
-new_autocmd ('TextYankPost', { callback = function() vim.hl.on_yank () end, desc = 'Highlight when yanking text' })
 
--- NOTE: Autocommand for plugins that need to build or run commands after installation.
+-- NOTE: Implemented with yanky.nvim
+-- new_autocmd ('TextYankPost', { callback = function() vim.hl.on_yank () end, desc = 'Highlight when yanking text' })
+
+-- Autocommand for plugins that need to build or run commands after installation.
 new_autocmd ('PackChanged', {
 	callback = function(ev)
 		local name = ev.data.spec.name
