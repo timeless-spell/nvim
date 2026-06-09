@@ -146,3 +146,33 @@ clue.setup  {
 		clue.gen_clues.z (),
 	},
 }
+
+-- ==============================
+-- MiniDiff
+-- ==============================
+
+require ('mini.diff').setup  {
+	view = {
+		style = 'sign',
+		signs = { add = '', change = '', delete = '' },
+	},
+	mappings = {
+		-- Apply hunks inside a visual/operator region
+		apply = 'mgh',
+
+		-- Reset hunks inside a visual/operator region
+		reset = 'mgH',
+
+		-- Hunk range textobject to be used inside operator
+		-- Works also in Visual mode if mapping differs from apply and reset
+		textobject = 'mgh',
+
+		-- Go to hunk range in corresponding direction
+		goto_first = '[H',
+		goto_prev = '[h',
+		goto_next = ']h',
+		goto_last = ']H',
+	},
+}
+
+Ang.map ('mdo', MiniDiff.toggle_overlay, 'Toggle Overlay [MiniDiff]')
