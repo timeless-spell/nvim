@@ -130,6 +130,8 @@ clue.setup  {
 
 		-- `z` key
 		{ mode = { 'n', 'x' }, keys = 'z' },
+
+		{ mode = { 'n', 'x' }, keys = 's' },
 	},
 
 	clues = {
