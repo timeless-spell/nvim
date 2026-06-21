@@ -1,7 +1,4 @@
 Ang.pack_add  'neovim/nvim-lspconfig'
-Ang.pack_add  'chrisgrieser/nvim-lsp-endhints'
-
-require ('lsp-endhints').setup ()
 
 vim.api.nvim_create_autocmd ('LspAttach', {
 	group = vim.api.nvim_create_augroup ('lsp-attach', { clear = true }),
@@ -35,7 +32,7 @@ vim.api.nvim_create_autocmd ('LspAttach', {
 
 		if client and client:supports_method ('textDocument/inlayHint', event.buf) then
 			Ang.map (
-				'<leader>lH',
+				'gl',
 				function() vim.lsp.inlay_hint.enable (not vim.lsp.inlay_hint.is_enabled  { bufnr = event.buf }) end,
 				'Toggle Inlay Hints'
 			)
@@ -47,16 +44,21 @@ local function enabled_servers(servers_config)
 	local enabled = {}
 
 	for server, config in pairs (servers_config) do
-		vim.lsp.config[server] = config
+		vim.lsp.config (server, config)
 		if server ~= '*' then table.insert (enabled, server) end
 	end
 
 	return enabled
 end
 
+---@type table<string, vim.lsp.Config>
 local servers = {
 	['*'] = {},
 	lua_ls = {},
+	clangd = {},
+	tombi = {},
+	jsonls = {},
+	rust_analyzer = {},
 	harper_ls = {
 		settings = {
 			['harper-ls'] = {
@@ -67,8 +69,7 @@ local servers = {
 			},
 		},
 	},
-	taplo = {},
-	rust_analyzer = {},
+	gleam = {},
 }
 
 vim.lsp.enable (enabled_servers (servers))
