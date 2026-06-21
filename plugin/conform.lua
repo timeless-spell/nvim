@@ -12,6 +12,7 @@ conform.setup  {
 	},
 	formatters_by_ft = {
 		lua = { 'stylua' },
+		c = { 'clang-format' },
 		rust = { 'rustfmt' },
 		toml = { 'taplo' },
 	},
