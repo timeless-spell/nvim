@@ -5,7 +5,12 @@ local add = Ang.pack_add
 -- ==============================
 add  { src = 'L3MON4D3/LuaSnip', version = vim.version.range  '2.*' }
 
-require ('luasnip').setup  {}
+require ('luasnip').setup  {
+	update_events = { 'TextChanged', 'TextChangedI' },
+	enable_autosnippets = true,
+}
+
+require ('luasnip.loaders.from_lua').load  { paths = vim.fn.stdpath  'config' .. '/snippets' }
 
 -- ==============================
 -- Lazydev
@@ -21,8 +26,11 @@ add  'MahanRahmati/blink-nerdfont.nvim'
 add  'moyiz/blink-emoji.nvim'
 add  { src = 'saghen/blink.cmp', version = vim.version.range  '1.*' }
 
----@type blink.cmp.Config
+--- @type blink.cmp.Config
 local blink_config = {
+	cmdline = {
+		enabled = false,
+	},
 	completion = {
 		menu = {
 			draw = {
@@ -67,7 +75,15 @@ local blink_config = {
 	},
 	snippets = { preset = 'luasnip' },
 	sources = {
-		default = { 'emoji', 'nerdfont', 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+		default = {
+			'lsp',
+			'path',
+			'snippets',
+			'buffer',
+			'emoji',
+			'nerdfont',
+			'lazydev',
+		},
 		providers = {
 			lazydev = {
 				name = 'lazydev',
