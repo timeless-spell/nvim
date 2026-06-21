@@ -54,7 +54,18 @@ end
 ---@type table<string, vim.lsp.Config>
 local servers = {
 	['*'] = {},
-	lua_ls = {},
+	lua_ls = {
+		--- @type lspconfig.settings.lua_ls
+		settings = {
+			Lua = {
+				workspace = {
+					library = {
+						vim.api.nvim_get_runtime_file ('lua/lspconfig', false)[1],
+					},
+				},
+			},
+		},
+	},
 	clangd = {},
 	tombi = {},
 	jsonls = {},
