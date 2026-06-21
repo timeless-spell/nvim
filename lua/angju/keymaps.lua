@@ -1,8 +1,3 @@
---- @class ang.Keymap: vim.api.keyset.keymap
---- @field keys string
---- @field func function | string
---- @field mode? string | string[]
-
 --- @type ang.Keymap[]
 local keymaps = {
 	{ keys = '<Esc>', func = '<CMD>nohlsearch<CR>', desc = 'Clear search highlights' },

@@ -3,7 +3,7 @@ vim.diagnostic.config  {
 	severity_sort = true,
 	float = { border = 'rounded', source = 'if_many' },
 	underline = { severity = { min = vim.diagnostic.severity.WARN } },
-	virtual_text = false,
+	virtual_text = true,
 	jump = {
 		on_jump = function(_, bufnr)
 			vim.diagnostic.open_float  {

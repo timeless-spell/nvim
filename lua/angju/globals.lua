@@ -31,6 +31,11 @@ end
 --- @param mode? string | string[]
 function globals.map(key, func, desc, mode) vim.keymap.set (mode or 'n', key, func, { desc = desc }) end
 
+--- @class ang.Keymap: vim.api.keyset.keymap
+--- @field keys string
+--- @field func function | string
+--- @field mode? string | string[]
+
 ---@param keymap_list ang.Keymap[]
 function globals.tbl_map(keymap_list)
 	for _, value in ipairs (keymap_list) do
