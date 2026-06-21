@@ -126,7 +126,7 @@ local telescope_keymaps = {
 	},
 	{
 		keys = '<leader>sz',
-		func = require ('telescope').extensions.zoxide.list,
+		func = telescope.extensions.zoxide.list,
 		desc = 'Zoxide [Telescope]',
 	},
 }
