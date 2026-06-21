@@ -14,7 +14,7 @@ conform.setup  {
 		lua = { 'stylua' },
 		c = { 'clang-format' },
 		rust = { 'rustfmt' },
-		toml = { 'taplo' },
+		toml = { 'tombi' },
 	},
 }
 
